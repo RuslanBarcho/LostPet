@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="types">
+        <item>Кошка</item>
+        <item>Собака</item>
+    </string-array>
+
+    <string-array name="post_types">
+        <item>Потерян</item>
+        <item>Найден</item>
+        <item>В добрые руки</item>
+    </string-array>
+    <string name="app_name">Lost Pet</string>
+    <string name="title_home">Объявления</string>
+    <string name="title_dashboard">Профиль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="login">Войти</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="name">Имя</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Подтвердить пароль</string>
+    <string name="enter_info">Введите данные</string>
+    <string name="profile">Профиль</string>
+    <string name="ask_no_account">Нет аккаунта?</string>
+    <string name="error_fields_required">Все поля обязательны</string>
+    <string name="error_password_match">Пароли не совпадают</string>
+    <string name="search">Поиск</string>
+    <string name="title_ads">Объявления</string>
+    <string name="title_profile">Профиль</string>
+    <string name="my_ads">Мои посты</string>
+    <string name="favorites">Избранные</string>
+    <string name="messages">Сообщения</string>
+    <string name="settings">Настройки</string>
+    <string name="title">Название</string>
+    <string name="description">Описание</string>
+    <string name="create">Создать</string>
+    <string name="location">Геопозиция</string>
+    <string name="cancel">Отменить</string>
+    <string name="done">Готово</string>
+    <string name="call">Позвонить</string>
+    <string name="send_message">Написать</string>
+    <string name="my_adverts">Мои объявления</string>
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+</resources>

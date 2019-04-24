@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Lost Pet</string>
+    <string name="title_ads">All</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="phone_number">Phone number</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="enter_info">Enter some info</string>
+    <string name="error_password_match">Password does not match confirm</string>
+    <string name="error_fields_required">All fields are required</string>
+    <string name="search">Search</string>
+
+    <string-array name="types">
+        <item>Cat</item>
+        <item>Dog</item>
+    </string-array>
+
+    <string-array name="post_types">
+        <item>Lost</item>
+        <item>Found</item>
+        <item>Give away</item>
+    </string-array>
+    <string name="profile">Profile</string>
+    <string name="ask_no_account">Has no account?</string>
+    <string name="title_home">Ads</string>
+    <string name="title_dashboard">Profile</string>
+    <string name="my_ads">My ads</string>
+    <string name="favorites">Favorites</string>
+    <string name="messages">Messages</string>
+    <string name="settings">Settings</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="create">Create</string>
+    <string name="location">Location</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="call">Call</string>
+    <string name="send_message">Send message</string>
+    <string name="my_adverts">My adverts</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+</resources>
