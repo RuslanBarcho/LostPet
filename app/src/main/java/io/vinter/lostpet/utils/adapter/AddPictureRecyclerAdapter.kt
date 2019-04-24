@@ -32,6 +32,7 @@ class AddPictureRecyclerAdapter(private val files: ArrayList<Uri>, private val c
     }
 
     override fun getItemCount(): Int {
+        if (files.size >=3 ) return files.size
         return files.size + 1
     }
 

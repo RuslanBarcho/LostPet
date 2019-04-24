@@ -29,22 +29,20 @@ class CreateActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(CreateViewModel::class.java)
         val preferences = getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
 
-        val spinnerPet = spinner_pet_type
-        val spinnerPost = spinner_post_type
         val petAdapter = ArrayAdapter.createFromResource(this, R.array.types, R.layout.spinner_pets_item)
         val postAdapter = ArrayAdapter.createFromResource(this, R.array.post_types, R.layout.spinner_post_item)
         petAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         postAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-        spinnerPet.adapter = petAdapter
-        spinnerPost.adapter = postAdapter
+        spinner_pet_type.adapter = petAdapter
+        spinner_post_type.adapter = postAdapter
 
         if (viewModel.fileUri.value == null) viewModel.fileUri.postValue(ArrayList())
 
         create_button_done.setOnClickListener {
             var animalType = "cat"
             var advertType= "missed"
-            if (spinnerPet.selectedItemPosition == 1) animalType = "dog"
-            when (spinnerPost.selectedItemPosition){
+            if (spinner_pet_type.selectedItemPosition == 1) animalType = "dog"
+            when (spinner_post_type.selectedItemPosition){
                 1 -> advertType = "found"
                 2 -> advertType = "good-hands"
             }
