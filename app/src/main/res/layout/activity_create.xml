@@ -47,54 +47,12 @@
                 android:textSize="24sp" />
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/create_image_recycler"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/add_image_one"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:background="@drawable/background_container_ripple"
-                android:elevation="3dp"
-                android:translationZ="10dp"
-                app:srcCompat="@drawable/ic_picture_add" />
-
-            <ImageButton
-                android:id="@+id/add_image_two"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:background="@drawable/background_container_ripple"
-                android:elevation="3dp"
-                android:translationZ="10dp"
-                app:srcCompat="@drawable/ic_picture_add" />
-
-            <ImageButton
-                android:id="@+id/add_image_three"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:background="@drawable/background_container_ripple"
-                android:elevation="3dp"
-                android:translationZ="10dp"
-                app:srcCompat="@drawable/ic_picture_add" />
-        </LinearLayout>
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp" />
 
         <EditText
             android:id="@+id/create_title"

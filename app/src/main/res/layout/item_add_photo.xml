@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageButton
-        android:id="@+id/added_image"
+        android:id="@+id/add_pic_item"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="12dp"

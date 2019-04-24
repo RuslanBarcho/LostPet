@@ -7,17 +7,14 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.Toast
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
-import io.vinter.lostpet.utils.GlideApp
-import io.vinter.lostpet.utils.RealPathUtil
 import io.vinter.lostpet.utils.StyleApplicator
+import io.vinter.lostpet.utils.adapter.AddPictureRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_create.*
 
 class CreateActivity : AppCompatActivity() {
@@ -40,6 +37,8 @@ class CreateActivity : AppCompatActivity() {
         postAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         spinnerPet.adapter = petAdapter
         spinnerPost.adapter = postAdapter
+
+        if (viewModel.fileUri.value == null) viewModel.fileUri.postValue(ArrayList())
 
         create_button_done.setOnClickListener {
             var animalType = "cat"
@@ -71,30 +70,9 @@ class CreateActivity : AppCompatActivity() {
 
         viewModel.fileUri.observe(this, Observer {
             if (it != null){
-                when(it.size){
-                    1 -> displayImage(add_image_one, it[0])
-                    2 -> {
-                        displayImage(add_image_one, it[0])
-                        displayImage(add_image_two, it[1])
-                    }
-                    3 -> {
-                        displayImage(add_image_one, it[0])
-                        displayImage(add_image_two, it[1])
-                        displayImage(add_image_three, it[2])
-                    }
-                }
+                configureImageRecycler(it)
             }
         })
-
-        add_image_one.setOnClickListener {
-            getImageFromLibrary()
-        }
-        add_image_two.setOnClickListener {
-            getImageFromLibrary()
-        }
-        add_image_three.setOnClickListener {
-            getImageFromLibrary()
-        }
 
         viewModel.error.observe(this, Observer{
             if (it != null){
@@ -111,12 +89,11 @@ class CreateActivity : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 44)
     }
 
-    private fun displayImage(v: ImageView, u: Uri){
-        val realPath = RealPathUtil.getRealPathFromURI_API19(this, u)
-        GlideApp.with(this)
-                .load(realPath)
-                .transforms(CenterCrop(), RoundedCorners(30))
-                .into(v)
+    private fun configureImageRecycler(files: ArrayList<Uri>){
+        create_image_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        create_image_recycler.adapter = AddPictureRecyclerAdapter(files, this) {
+            getImageFromLibrary()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
