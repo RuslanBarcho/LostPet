@@ -65,7 +65,7 @@ class FilterFragment : DialogFragment() {
         val adverts = ArrayList<String>()
         if (checked[0]) pets.add("cat")
         if (checked[1]) pets.add("dog")
-        if (checked[2]) adverts.add("lost")
+        if (checked[2]) adverts.add("missed")
         if (checked[3]) adverts.add("found")
         if (checked[4]) adverts.add("good-hands")
         return FilterForm(pets, adverts)

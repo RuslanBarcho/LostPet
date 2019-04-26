@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_create.*
 class CreateActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CreateViewModel
+    private lateinit var adapter: AddPictureRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,9 +90,15 @@ class CreateActivity : AppCompatActivity() {
 
     private fun configureImageRecycler(files: ArrayList<Uri>){
         create_image_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        create_image_recycler.adapter = AddPictureRecyclerAdapter(files, this) {
-            getImageFromLibrary()
+        adapter =  AddPictureRecyclerAdapter(files, this){
+            if (it == viewModel.fileUri.value!!.size) getImageFromLibrary()
+            else {
+                viewModel.fileUri.value!!.removeAt(it)
+                adapter.removeItem(it, viewModel.fileUri.value!!)
+            }
         }
+        create_image_recycler.adapter = adapter
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){

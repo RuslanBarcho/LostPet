@@ -62,9 +62,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_delete" />
+                            <entry key="height" value="25" />
+                            <entry key="outputName" value="ic_cancel" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="E:\Work Folders\Lost Pets\Drawables\delete.svg" />
+                            <entry key="sourceFile" value="E:\Work Folders\Lost Pets\Drawables\cancel.svg" />
+                            <entry key="width" value="25" />
                           </map>
                         </option>
                       </PersistentState>
