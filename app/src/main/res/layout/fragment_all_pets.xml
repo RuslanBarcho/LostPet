@@ -60,6 +60,7 @@
                 android:queryBackground="@android:color/transparent"
                 android:queryHint="@string/search"
                 android:submitBackground="@android:color/transparent"
+                android:theme="@style/WhiteCursorSearchView"
                 android:translationZ="8dp" />
 
 
