@@ -13,6 +13,7 @@ import android.widget.Toast
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
+import io.vinter.lostpet.ui.create.location.LocationPickFragment
 import io.vinter.lostpet.utils.StyleApplicator
 import io.vinter.lostpet.utils.adapter.AddPictureRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_create.*
@@ -57,6 +58,11 @@ class CreateActivity : AppCompatActivity() {
 
         create_back.setOnClickListener {
             this.finish()
+        }
+
+        create_location.setOnClickListener {
+            val locationPicker = LocationPickFragment()
+            locationPicker.show(supportFragmentManager, "locationPicker")
         }
 
         viewModel.message.observe(this, Observer {

@@ -28,12 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = { item: MenuItem ->
         when (item.itemId) {
-            R.id.navigation_list -> {
-                showFragment("all", "profile")
-            }
-            R.id.navigation_profile -> {
-                showFragment("profile", "all")
-            }
+            R.id.navigation_list -> showFragment("all", "profile")
+            R.id.navigation_profile -> showFragment("profile", "all")
         }
         true
     }
