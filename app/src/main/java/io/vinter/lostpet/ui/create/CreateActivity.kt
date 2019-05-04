@@ -10,9 +10,11 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.google.android.gms.maps.model.LatLng
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
+import io.vinter.lostpet.entity.advert.Location
 import io.vinter.lostpet.ui.create.location.LocationPickFragment
 import io.vinter.lostpet.utils.StyleApplicator
 import io.vinter.lostpet.utils.adapter.AddPictureRecyclerAdapter
@@ -79,6 +81,12 @@ class CreateActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.location.observe(this, Observer {
+            if (it != null){
+                create_location.text = it.address
+            }
+        })
+
         viewModel.error.observe(this, Observer{
             if (it != null){
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
@@ -94,6 +102,10 @@ class CreateActivity : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 44)
     }
 
+    fun setLocation(address: String, latLng: LatLng) {
+        viewModel.location.postValue(Location(address, latLng))
+    }
+
     private fun configureImageRecycler(files: ArrayList<Uri>){
         create_image_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         adapter =  AddPictureRecyclerAdapter(files, this){
@@ -104,7 +116,6 @@ class CreateActivity : AppCompatActivity() {
             }
         }
         create_image_recycler.adapter = adapter
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){

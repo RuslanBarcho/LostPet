@@ -107,6 +107,7 @@
             android:elevation="3dp"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
+            android:paddingRight="8dp"
             android:stateListAnimator="@null"
             android:text="@string/location"
             android:textAllCaps="false"

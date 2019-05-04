@@ -9,6 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.vinter.lostpet.entity.Message
 import io.vinter.lostpet.entity.advert.Advert
+import io.vinter.lostpet.entity.advert.Location
 import io.vinter.lostpet.network.NetModule
 import io.vinter.lostpet.network.service.AdvertService
 import io.vinter.lostpet.utils.RealPathUtil
@@ -23,6 +24,7 @@ class CreateViewModel: ViewModel(){
     var message = MutableLiveData<Message>()
     var error = MutableLiveData<String>()
     var fileUri = MutableLiveData<ArrayList<Uri>>()
+    var location = MutableLiveData<Location>()
 
     fun postAdvert(context: Context, token: String, advert: Advert){
         val uri = fileUri.value

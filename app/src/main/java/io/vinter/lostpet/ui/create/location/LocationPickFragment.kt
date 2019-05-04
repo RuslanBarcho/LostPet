@@ -23,7 +23,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.tbruyelle.rxpermissions2.RxPermissions
 
 import io.vinter.lostpet.R
+import io.vinter.lostpet.ui.create.CreateActivity
 import kotlinx.android.synthetic.main.fragment_location_pick.*
+import java.io.IOException
 import java.util.*
 
 class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
@@ -36,8 +38,11 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
            location_select.setOnClickListener {
                val location = map.cameraPosition.target
                Thread {
-                   val address = Geocoder(context, Locale.getDefault()).getFromLocation(location.latitude, location.longitude, 1)
-                   activity!!.runOnUiThread{Toast.makeText(context, address[0].getAddressLine(0), Toast.LENGTH_SHORT).show()}
+                   try {
+                       val address = Geocoder(context, Locale.getDefault()).getFromLocation(location.latitude, location.longitude, 1)
+                       (activity as CreateActivity).setLocation(address[0].getAddressLine(0), location)
+                       dismiss()
+                   } catch (e: IOException){ }
                }.start()
            }
        }
