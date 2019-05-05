@@ -43,6 +43,7 @@ class AdvertActivity : AppCompatActivity() {
             if (detail != null){
                 detail_advert_name.text = detail.advertTitle
                 detail_advert_description.text = detail.advertDescription
+                detail_adver_owner_name.text = detail.owner!!.name
 
                 if (detail.pictureUrl != null){
                     if (detail.pictureUrl!!.size == 0){
@@ -71,7 +72,7 @@ class AdvertActivity : AppCompatActivity() {
                         rxPermissions.request(Manifest.permission.CALL_PHONE,
                                 Manifest.permission.CALL_PHONE)
                                 .subscribe { granted ->
-                                    if (granted!!) {
+                                    if (granted) {
                                         makeCall(detail.owner!!.phoneNumber!!)
                                     }
                                 }
@@ -92,7 +93,7 @@ class AdvertActivity : AppCompatActivity() {
 
     private fun configEmptyPager(){
         val list = ArrayList<String>()
-        list.add("https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80")
+        list.add("")
         detail_advert_image.adapter = ImagePagerAdapter(list, this)
     }
 

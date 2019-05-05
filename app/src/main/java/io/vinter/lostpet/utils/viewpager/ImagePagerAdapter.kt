@@ -29,7 +29,7 @@ class ImagePagerAdapter(private val pictureUrls: ArrayList<String>, val context:
 
         GlideApp.with(context)
                 .load(pictureUrls[position])
-                .error(R.color.colorAccent)
+                .error(R.drawable.placeholder)
                 .transform(CenterCrop())
                 .into(imageView)
 

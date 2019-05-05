@@ -42,7 +42,9 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
                        val address = Geocoder(context, Locale.getDefault()).getFromLocation(location.latitude, location.longitude, 1)
                        (activity as CreateActivity).setLocation(address[0].getAddressLine(0), location)
                        dismiss()
-                   } catch (e: IOException){ }
+                   } catch (e: IOException){
+                       activity!!.runOnUiThread{Toast.makeText(context, "Невозможно определить адрес", Toast.LENGTH_SHORT).show()}
+                   }
                }.start()
            }
        }

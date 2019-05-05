@@ -44,9 +44,7 @@ class AllPetsFragment : Fragment() {
             if (it != null){
                 var column = 2
                 if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) column = 3
-                val adverts = it
-                adverts.reverse()
-                adapter = AnimalRecyclerAdapter(adverts, context!!) { id ->
+                adapter = AnimalRecyclerAdapter(it, context!!) { id ->
                     val openDetail = Intent(activity, AdvertActivity::class.java)
                     openDetail.putExtra("advertId", id)
                     activity!!.startActivityForResult(openDetail, 23)
