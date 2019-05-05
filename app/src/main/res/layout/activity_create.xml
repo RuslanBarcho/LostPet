@@ -1,144 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.create.CreateActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/create_button_cancel"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/create_button_cancel">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/colorPrimary"
-            android:elevation="3dp"
-            android:gravity="center_vertical"
-            android:translationZ="8dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/create_back"
-                android:layout_width="56dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/ripple_transparent"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:src="?attr/homeAsUpIndicator"
-                android:tint="@color/colorAccentDark" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="56dp"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/create_back"
+                android:background="@color/colorPrimary"
+                android:elevation="3dp"
                 android:gravity="center_vertical"
-                android:text="@string/create"
+                android:translationZ="8dp">
+
+                <ImageButton
+                    android:id="@+id/create_back"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ripple_transparent"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:src="?attr/homeAsUpIndicator"
+                    android:tint="@color/colorAccentDark" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/create_back"
+                    android:gravity="center_vertical"
+                    android:text="@string/create"
+                    android:textColor="@color/colorAccentDark"
+                    android:textSize="24sp" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/create_image_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:elevation="2dp"
+                android:translationZ="2dp" />
+
+            <EditText
+                android:id="@+id/create_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/background_container"
+                android:elevation="2dp"
+                android:ems="10"
+                android:hint="@string/title"
+                android:inputType="textPersonName"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:paddingTop="10dp"
                 android:textColor="@color/colorAccentDark"
-                android:textSize="24sp" />
-        </RelativeLayout>
+                android:textColorHint="@color/colorAccent"
+                android:translationZ="2dp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/create_image_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp" />
+            <EditText
+                android:id="@+id/create_description"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/background_container"
+                android:elevation="2dp"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="@string/description"
+                android:inputType="textMultiLine"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/colorAccentDark"
+                android:textColorHint="@color/colorAccent"
+                android:translationZ="2dp" />
 
-        <EditText
-            android:id="@+id/create_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/background_container"
-            android:elevation="3dp"
-            android:ems="10"
-            android:hint="@string/title"
-            android:inputType="textPersonName"
-            android:paddingBottom="10dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="8dp"
-            android:paddingTop="10dp"
-            android:textColor="@color/colorAccentDark"
-            android:textColorHint="@color/colorAccent"
-            android:translationZ="3dp" />
+            <Button
+                android:id="@+id/create_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/background_container_ripple"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_location"
+                android:elevation="2dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:stateListAnimator="@null"
+                android:text="@string/location"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:translationZ="2dp" />
 
-        <EditText
-            android:id="@+id/create_description"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/background_container"
-            android:elevation="3dp"
-            android:ems="10"
-            android:gravity="top"
-            android:hint="@string/description"
-            android:inputType="textMultiLine"
-            android:paddingBottom="8dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:textColor="@color/colorAccentDark"
-            android:textColorHint="@color/colorAccent"
-            android:translationZ="3dp" />
+            <Spinner
+                android:id="@+id/spinner_pet_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/background_container_ripple"
+                android:elevation="2dp"
+                android:translationZ="2dp" />
 
-        <Button
-            android:id="@+id/create_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/background_container_ripple"
-            android:drawablePadding="8dp"
-            android:drawableStart="@drawable/ic_location"
-            android:elevation="3dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="8dp"
-            android:stateListAnimator="@null"
-            android:text="@string/location"
-            android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp"
-            android:translationZ="3dp" />
+            <Spinner
+                android:id="@+id/spinner_post_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/background_container_ripple"
+                android:elevation="2dp"
+                android:translationZ="2dp" />
 
-        <Spinner
-            android:id="@+id/spinner_pet_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/background_container_ripple"
-            android:elevation="3dp"
-            android:translationZ="3dp" />
+        </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner_post_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/background_container_ripple"
-            android:elevation="3dp"
-            android:translationZ="3dp" />
-
-
-    </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/create_button_cancel"

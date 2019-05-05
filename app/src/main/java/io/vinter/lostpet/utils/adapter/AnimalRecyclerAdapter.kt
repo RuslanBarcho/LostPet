@@ -27,15 +27,15 @@ class AnimalRecyclerAdapter(private val adverts: ArrayList<Advert>, private val 
     override fun onBindViewHolder(animalViewHolder: AnimalViewHolder, i: Int) {
         animalViewHolder.name.text = adverts[i].advertTitle
 
-        var pictureUrl = "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+        var pictureUrl = ""
         if (adverts[i].puctureUrl!!.size > 0) pictureUrl = adverts[i].puctureUrl!![0]
 
         GlideApp.with(context)
                 .load(pictureUrl)
                 .override(300, 300)
                 .placeholder(R.drawable.light_container)
-                .error(R.drawable.light_container)
-                .transforms(CenterCrop(), RoundedCorners(30))
+                .error(R.drawable.placeholder)
+                .transform(CenterCrop())
                 .into(animalViewHolder.image)
         animalViewHolder.itemView.setOnClickListener { listener(adverts[i].id!!) }
     }
