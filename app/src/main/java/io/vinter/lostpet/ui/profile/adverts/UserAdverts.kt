@@ -41,10 +41,10 @@ class UserAdverts : Fragment() {
                 val adapter = AnimalRecyclerAdapter(adverts, context!!) { id ->
 
                 }
-                user_adverts_recycler.layoutManager = GridLayoutManager(context, column)
+                favorites_recycler.layoutManager = GridLayoutManager(context, column)
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
-                user_adverts_recycler.layoutAnimation = animation
-                user_adverts_recycler.adapter = adapter
+                favorites_recycler.layoutAnimation = animation
+                favorites_recycler.adapter = adapter
             }
         })
 

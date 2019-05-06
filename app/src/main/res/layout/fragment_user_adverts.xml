@@ -28,7 +28,7 @@
         android:textSize="24sp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/user_adverts_recycler"
+        android:id="@+id/favorites_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
