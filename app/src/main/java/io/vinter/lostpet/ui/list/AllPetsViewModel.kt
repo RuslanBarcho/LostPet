@@ -37,4 +37,14 @@ class AllPetsViewModel : ViewModel() {
                     if (e is HttpException) error.postValue(e.message()) else error.postValue("Problem with internet connection")
                 }
     }
+
+    fun searchAdverts(token: String, query: String){
+        NetModule.retrofit.create(AdvertService::class.java)
+                .searchAdverts("Bearer $token", query)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(adverts::postValue) {e ->
+                    if (e is HttpException) error.postValue(e.message()) else error.postValue("Problem with internet connection")
+                }
+    }
 }

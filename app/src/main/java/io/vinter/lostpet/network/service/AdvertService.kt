@@ -12,6 +12,9 @@ interface AdvertService {
     @GET("/adverts")
     fun getAllAdverts(@Header("Authorization") token: String): Single<ArrayList<Advert>>
 
+    @GET("/adverts/search")
+    fun searchAdverts(@Header("Authorization") token: String, @Query("q") q: String): Single<ArrayList<Advert>>
+
     @POST("/adverts/filtered")
     fun getFilteredAdverts(@Header("Authorization") token: String, @Body filterForm: FilterForm): Single<ArrayList<Advert>>
 
@@ -29,5 +32,8 @@ interface AdvertService {
 
     @Multipart
     @POST("/adverts/create")
-    fun createAdvert(@Header("Authorization") token: String, @Part files: List<MultipartBody.Part>, @Part json: MultipartBody.Part): Single<Message>
+    fun createAdvert(@Header("Authorization") token: String,
+                     @Part files: List<MultipartBody.Part>,
+                     @Part json: MultipartBody.Part,
+                     @Part location: MultipartBody.Part?): Single<Message>
 }

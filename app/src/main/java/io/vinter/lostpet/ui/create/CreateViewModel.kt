@@ -29,11 +29,15 @@ class CreateViewModel: ViewModel(){
     fun postAdvert(context: Context, token: String, advert: Advert){
         val uri = fileUri.value
         if (uri != null){
+            var locationPart = null as MultipartBody.Part?
             val files = ArrayList<MultipartBody.Part>()
             uri.forEachIndexed {index, u -> files.add(prepareMultipart(u, context, index))}
+            if (location.value != null) locationPart = MultipartBody.Part.createFormData("location", Gson().toJson(location.value))
+
             NetModule.retrofit.create(AdvertService::class.java)
                     .createAdvert("Bearer $token", files,
-                            MultipartBody.Part.createFormData("json", Gson().toJson(advert)))
+                            MultipartBody.Part.createFormData("json", Gson().toJson(advert)),
+                            locationPart)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(message::postValue) {

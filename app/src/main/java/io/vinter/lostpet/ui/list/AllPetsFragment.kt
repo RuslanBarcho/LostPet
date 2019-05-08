@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.SearchView
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.network.form.FilterForm
@@ -61,6 +62,18 @@ class AllPetsFragment : Fragment() {
             dialog.setTargetFragment(this, 23)
             dialog.show(fragmentManager, "filter")
         }
+
+        adverts_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(s: String): Boolean {
+                adverts_search.clearFocus()
+                viewModel.searchAdverts(preferences.getString("token", "")!!, s)
+                return false
+            }
+
+            override fun onQueryTextChange(s: String): Boolean {
+                return false
+            }
+        })
     }
 
     fun update(){

@@ -40,7 +40,7 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
                Thread {
                    try {
                        val address = Geocoder(context, Locale.getDefault()).getFromLocation(location.latitude, location.longitude, 1)
-                       (activity as CreateActivity).setLocation(address[0].getAddressLine(0), location)
+                       (activity as CreateActivity).setLocation(io.vinter.lostpet.entity.advert.Location(address[0].getAddressLine(0), location.latitude, location.longitude))
                        dismiss()
                    } catch (e: IOException){
                        activity!!.runOnUiThread{Toast.makeText(context, "Невозможно определить адрес", Toast.LENGTH_SHORT).show()}

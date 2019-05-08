@@ -33,5 +33,8 @@ class Detail: Serializable {
     @SerializedName("pictureURL")
     @Expose
     var pictureUrl: ArrayList<String>? = null
+    @SerializedName("location")
+    @Expose
+    var location: Location? = null
 
 }

@@ -102,8 +102,8 @@ class CreateActivity : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), 44)
     }
 
-    fun setLocation(address: String, latLng: LatLng) {
-        viewModel.location.postValue(Location(address, latLng))
+    fun setLocation(location: Location) {
+        viewModel.location.postValue(location)
     }
 
     private fun configureImageRecycler(files: ArrayList<Uri>){

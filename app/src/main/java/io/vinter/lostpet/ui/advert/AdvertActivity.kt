@@ -12,9 +12,11 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.view.View
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
+import io.vinter.lostpet.entity.advert.Location
 import io.vinter.lostpet.ui.edit.EditActivity
 import io.vinter.lostpet.utils.StyleApplicator
 import io.vinter.lostpet.utils.viewpager.ImagePagerAdapter
@@ -58,6 +60,12 @@ class AdvertActivity : AppCompatActivity() {
                     userAd = true
                 }
 
+                if (detail.location != null){
+                    detail_location.text = detail.location!!.address
+                    detail_location.visibility = View.VISIBLE
+                    detail_location.setOnClickListener{openMap(detail.location!!, detail.advertTitle!!)}
+                }
+
                 detail_advert_action.setOnClickListener {
                     if (userAd) {
                         val startEdit = Intent(this, EditActivity::class.java)
@@ -95,6 +103,13 @@ class AdvertActivity : AppCompatActivity() {
         val list = ArrayList<String>()
         list.add("")
         detail_advert_image.adapter = ImagePagerAdapter(list, this)
+    }
+
+    private fun openMap(location: Location, name: String){
+        val gmUri = Uri.parse("geo:0,0?q=${location.latitude},${location.longitude}($name)")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        if (mapIntent.resolveActivity(packageManager) != null) startActivity(mapIntent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
