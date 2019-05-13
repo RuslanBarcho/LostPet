@@ -16,6 +16,7 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.adverts.UserAdverts
 import io.vinter.lostpet.ui.profile.favs.FavoritesFragment
+import io.vinter.lostpet.ui.settings.SettingsFragment
 import io.vinter.lostpet.utils.GlideApp
 import io.vinter.lostpet.utils.adapter.ProfileRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -51,6 +52,7 @@ class ProfileFragment : Fragment() {
             when (it) {
                 0 -> (activity as MainActivity).changeProfilePage(UserAdverts())
                 1 -> (activity as MainActivity).changeProfilePage(FavoritesFragment())
+                3 -> (activity as MainActivity).changeProfilePage(SettingsFragment())
             }
         }
 

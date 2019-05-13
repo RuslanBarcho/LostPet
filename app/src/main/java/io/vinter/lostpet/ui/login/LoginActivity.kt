@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
                 val preferences = getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
                 preferences.edit().putString("token", it.token)
                         .putString("phone_number", it.phoneNumber)
+                        .putString("name", it.name)
                         .putString("id", it.id)
                         .apply()
                 this.startActivity(Intent(this, MainActivity::class.java))
