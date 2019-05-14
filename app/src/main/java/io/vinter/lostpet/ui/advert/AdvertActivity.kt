@@ -46,6 +46,7 @@ class AdvertActivity : AppCompatActivity() {
                 detail_advert_name.text = detail.advertTitle
                 detail_advert_description.text = detail.advertDescription
                 detail_adver_owner_name.text = detail.owner!!.name
+                setAdvertTypes(detail.animalType, detail.advertType)
 
                 if (detail.pictureUrl != null){
                     if (detail.pictureUrl!!.size == 0){
@@ -110,6 +111,18 @@ class AdvertActivity : AppCompatActivity() {
         val mapIntent = Intent(Intent.ACTION_VIEW, gmUri)
         mapIntent.setPackage("com.google.android.apps.maps")
         if (mapIntent.resolveActivity(packageManager) != null) startActivity(mapIntent)
+    }
+
+    private fun setAdvertTypes(animal: String?, advert: String?){
+        when (animal){
+            "cat" -> detail_advert_animal_type.text = resources.getStringArray(R.array.types)[0]
+            "dog" -> detail_advert_animal_type.text = resources.getStringArray(R.array.types)[1]
+        }
+        when (advert){
+            "missed" -> detail_advert_type.text = resources.getStringArray(R.array.post_types)[0]
+            "found" -> detail_advert_type.text = resources.getStringArray(R.array.post_types)[1]
+            "good-hands" -> detail_advert_type.text = resources.getStringArray(R.array.post_types)[2]
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
