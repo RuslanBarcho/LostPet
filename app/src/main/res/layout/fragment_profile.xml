@@ -22,7 +22,8 @@
             android:layout_marginLeft="16dp"
             android:text="@string/profile"
             android:textColor="@color/colorAccentDark"
-            android:textSize="24sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView

@@ -32,7 +32,7 @@ class SettingsFragment : Fragment() {
         settings_phone.hint = preferences.getString("phone_number", "")
         settings_name.hint = preferences.getString("name", "")
 
-        settings_comfirm.setOnClickListener{
+        settings_confirm.setOnClickListener{
             val user = User()
             if (settings_name.text.toString() != "") user.name = settings_name.text.toString()
             if (settings_phone.text.toString() != "") user.phoneNumber = settings_phone.text.toString()
@@ -43,7 +43,7 @@ class SettingsFragment : Fragment() {
             (activity as MainActivity).changeProfilePage(ProfileFragment())
         }
 
-        settings_comfirm.setOnClickListener{
+        settings_confirm.setOnClickListener{
             val user = User()
             if (settings_name.text.toString() != "") user.name = settings_name.text.toString()
             if (settings_phone.text.toString() != "") user.phoneNumber = settings_phone.text.toString()

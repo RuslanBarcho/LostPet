@@ -30,7 +30,8 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/title_ads"
                 android:textColor="@color/colorAccentDark"
-                android:textSize="24sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/pets_filter_button"

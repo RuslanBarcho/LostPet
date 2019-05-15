@@ -25,7 +25,8 @@
         android:gravity="center_vertical"
         android:text="@string/my_adverts"
         android:textColor="@color/colorAccentDark"
-        android:textSize="24sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/favorites_recycler"
