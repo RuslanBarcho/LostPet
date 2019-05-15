@@ -7,7 +7,6 @@ import io.reactivex.schedulers.Schedulers
 import io.vinter.lostpet.entity.Message
 import io.vinter.lostpet.entity.advert.User
 import io.vinter.lostpet.network.NetModule
-import io.vinter.lostpet.network.form.RegisterForm
 import io.vinter.lostpet.network.service.UserService
 import retrofit2.HttpException
 
@@ -18,7 +17,7 @@ class SettingsViewModel: ViewModel(){
 
     fun editUser(token: String, user: User){
         NetModule.retrofit.create(UserService::class.java)
-                .editUser(token, user)
+                .editUser("Bearer $token", user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(message::postValue) {
