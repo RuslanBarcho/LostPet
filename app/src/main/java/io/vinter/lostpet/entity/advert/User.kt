@@ -14,5 +14,8 @@ class User {
     @SerializedName("name")
     @Expose
     var name: String? = null
+    @SerializedName("pictureURL")
+    @Expose
+    var pictureURL: String? = null
 
 }

@@ -7,6 +7,7 @@ import io.vinter.lostpet.entity.advert.User
 import io.vinter.lostpet.entity.user.LoginResponse
 import io.vinter.lostpet.network.form.LoginForm
 import io.vinter.lostpet.network.form.RegisterForm
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface UserService {
@@ -23,5 +24,9 @@ interface UserService {
     fun getFavs(@Header("Authorization") token: String): Single<ArrayList<Advert>>
 
     @PUT("user/edit")
-    fun editUser(@Header("Authorization") token: String, @Body user:User): Single<Message>
+    fun editUser(@Header("Authorization") token: String, @Body user:User): Single<User>
+
+    @Multipart
+    @POST("user/picture")
+    fun uploadUserPicture(@Header("Authorization") token: String,@Part image: MultipartBody.Part): Single<Message>
 }

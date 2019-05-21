@@ -1,5 +1,6 @@
 package io.vinter.lostpet.ui.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -23,28 +24,14 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var mRootView: View
-
-    @BindView(R.id.profile_picture)
-    lateinit var profilePicture: ImageView
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        mRootView = inflater.inflate(R.layout.fragment_profile, container, false)
-        ButterKnife.bind(this, mRootView)
-        GlideApp.with(context!!)
-                .load("https://i.dailymail.co.uk/i/pix/2017/04/20/13/3F6B966D00000578-4428630-image-m-80_1492690622006.jpg")
-                .override(300, 300)
-                .placeholder(R.drawable.light_container)
-                .error(R.drawable.light_container)
-                .transforms(CenterCrop(), CircleCrop())
-                .into(profilePicture)
-
-        return mRootView
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val preferences = context!!.getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
         val menuItems = ArrayList<Int>()
         for (i in 0..3) menuItems.add(i)
         profile_recycler.layoutManager = GridLayoutManager(context, 2)
@@ -55,7 +42,16 @@ class ProfileFragment : Fragment() {
                 3 -> (activity as MainActivity).changeProfilePage(SettingsFragment())
             }
         }
+        val url = preferences.getString("pictureURL", "")
+        if (url != "") displayImage(url!!)
+    }
 
+    private fun displayImage(url: String){
+        GlideApp.with(context!!)
+                .load(url)
+                .override(200, 200)
+                .transforms(CenterCrop(), CircleCrop())
+                .into(profile_picture)
     }
 
 }
