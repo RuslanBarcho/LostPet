@@ -7,9 +7,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 
@@ -17,7 +14,7 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.adverts.UserAdverts
 import io.vinter.lostpet.ui.profile.favs.FavoritesFragment
-import io.vinter.lostpet.ui.settings.SettingsFragment
+import io.vinter.lostpet.ui.profile.settings.SettingsFragment
 import io.vinter.lostpet.utils.GlideApp
 import io.vinter.lostpet.utils.adapter.ProfileRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_profile.*

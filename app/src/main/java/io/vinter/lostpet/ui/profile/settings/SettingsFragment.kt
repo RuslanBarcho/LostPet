@@ -1,4 +1,4 @@
-package io.vinter.lostpet.ui.settings
+package io.vinter.lostpet.ui.profile.settings
 
 import android.Manifest
 import android.app.Activity.RESULT_OK

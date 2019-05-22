@@ -25,7 +25,6 @@ import io.vinter.lostpet.utils.GlideApp
 import io.vinter.lostpet.utils.StyleApplicator
 import io.vinter.lostpet.utils.viewpager.ImagePagerAdapter
 import kotlinx.android.synthetic.main.activity_advert.*
-import kotlinx.android.synthetic.main.fragment_settings.*
 
 class AdvertActivity : AppCompatActivity() {
 

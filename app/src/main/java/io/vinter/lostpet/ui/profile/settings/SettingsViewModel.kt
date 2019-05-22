@@ -1,4 +1,4 @@
-package io.vinter.lostpet.ui.settings
+package io.vinter.lostpet.ui.profile.settings
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

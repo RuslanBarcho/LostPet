@@ -1,6 +1,5 @@
 package io.vinter.lostpet.ui.main
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -18,7 +17,6 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.create.CreateActivity
 import io.vinter.lostpet.ui.list.AllPetsFragment
 import io.vinter.lostpet.ui.profile.ProfileFragment
-import io.vinter.lostpet.ui.settings.SettingsFragment
 import io.vinter.lostpet.utils.StyleApplicator
 
 class MainActivity : AppCompatActivity() {
