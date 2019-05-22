@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.google.android.gms.maps.model.LatLng
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert

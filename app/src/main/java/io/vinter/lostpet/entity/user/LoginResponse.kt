@@ -20,5 +20,8 @@ class LoginResponse {
     @SerializedName("id")
     @Expose
     var id: String? = null
+    @SerializedName("pictureURL")
+    @Expose
+    var pictureURL: String? = null
 
 }

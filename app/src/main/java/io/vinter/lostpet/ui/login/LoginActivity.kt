@@ -37,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
                         .putString("name", it.name)
                         .putString("id", it.id)
                         .apply()
+                if (it.pictureURL != null) preferences.edit().putString("pictureURL", it.pictureURL).apply()
                 this.startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
