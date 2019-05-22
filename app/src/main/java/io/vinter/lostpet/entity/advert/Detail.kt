@@ -36,5 +36,8 @@ class Detail: Serializable {
     @SerializedName("location")
     @Expose
     var location: Location? = null
+    @SerializedName("isFavorite")
+    @Expose
+    var isFavorite: Boolean? = null
 
 }

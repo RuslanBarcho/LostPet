@@ -13,14 +13,19 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
+import android.widget.Toast
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
 import io.vinter.lostpet.entity.advert.Location
 import io.vinter.lostpet.ui.edit.EditActivity
+import io.vinter.lostpet.utils.GlideApp
 import io.vinter.lostpet.utils.StyleApplicator
 import io.vinter.lostpet.utils.viewpager.ImagePagerAdapter
 import kotlinx.android.synthetic.main.activity_advert.*
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 class AdvertActivity : AppCompatActivity() {
 
@@ -61,6 +66,9 @@ class AdvertActivity : AppCompatActivity() {
                     userAd = true
                 }
 
+                if (detail.isFavorite!!) detail_advert_action.setImageResource(R.drawable.ic_featured_filled)
+                if (detail.owner?.pictureURL != null) loadUserImage(detail.owner!!.pictureURL!!)
+
                 if (detail.location != null){
                     detail_location.text = detail.location!!.address
                     detail_location.visibility = View.VISIBLE
@@ -89,8 +97,27 @@ class AdvertActivity : AppCompatActivity() {
                         makeCall(detail.owner!!.phoneNumber!!)
                     }
                 }
+
+                detail_advert_action.setOnClickListener{ viewModel.addToFavorites(preferences.getString("token", "")!!, Advert(detail))}
             }
         })
+
+        viewModel.message.observe(this, Observer {
+            if (it != null){
+                Toast.makeText(this, "Добавлено", Toast.LENGTH_SHORT).show()
+                viewModel.advert.value?.isFavorite = true
+                detail_advert_action.setImageResource(R.drawable.ic_featured_filled)
+                viewModel.message.postValue(null)
+            }
+        })
+    }
+
+    private fun loadUserImage(url: String){
+        GlideApp.with(this)
+                .load(url)
+                .override(64, 64)
+                .transforms(CenterCrop(), CircleCrop())
+                .into(detail_advert_owner_image)
     }
 
     @SuppressLint("MissingPermission")

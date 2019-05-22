@@ -45,6 +45,7 @@ class SettingsFragment : Fragment() {
 
         settings_phone.hint = preferences.getString("phone_number", "")
         settings_name.hint = preferences.getString("name", "")
+
         val url = preferences.getString("pictureURL", "")
         if (url != "") displayImage(url!!)
 
@@ -71,10 +72,14 @@ class SettingsFragment : Fragment() {
         viewModel.userData.observe(this, Observer {
             if (it != null){
                 Toast.makeText(context, "Обновлено", Toast.LENGTH_SHORT).show()
-                preferences.edit().putString("name", it.name).apply()
-                preferences.edit().putString("phone_number", it.phoneNumber).apply()
-                settings_phone.hint = it.phoneNumber
-                settings_name.hint = it.name
+                if (it.name != null){
+                    preferences.edit().putString("name", it.name).apply()
+                    settings_name.hint = it.name
+                }
+                if (it.phoneNumber != null) {
+                    preferences.edit().putString("phone_number", it.phoneNumber).apply()
+                    settings_phone.hint = it.phoneNumber
+                }
                 viewModel.userData.postValue(null)
             }
         })
