@@ -45,7 +45,8 @@
                     android:gravity="center_vertical"
                     android:text="@string/create"
                     android:textColor="@color/colorAccentDark"
-                    android:textSize="24sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView

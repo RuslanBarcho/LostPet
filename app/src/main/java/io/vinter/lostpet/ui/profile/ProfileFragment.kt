@@ -1,6 +1,7 @@
 package io.vinter.lostpet.ui.profile
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -11,6 +12,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 
 import io.vinter.lostpet.R
+import io.vinter.lostpet.ui.login.LoginActivity
 import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.adverts.UserAdverts
 import io.vinter.lostpet.ui.profile.favs.FavoritesFragment
@@ -41,6 +43,11 @@ class ProfileFragment : Fragment() {
         }
         val url = preferences.getString("pictureURL", "")
         if (url != "") displayImage(url!!)
+
+        profile_logout.setOnClickListener {
+            preferences.edit().remove("token").apply()
+            startActivity(Intent(activity, LoginActivity::class.java))
+        }
     }
 
     private fun displayImage(url: String){

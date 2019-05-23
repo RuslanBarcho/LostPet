@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import io.vinter.lostpet.R
 import io.vinter.lostpet.network.form.LoginForm
 import io.vinter.lostpet.ui.main.MainActivity
@@ -40,6 +41,13 @@ class LoginActivity : AppCompatActivity() {
                 if (it.pictureURL != null) preferences.edit().putString("pictureURL", it.pictureURL).apply()
                 this.startActivity(Intent(this, MainActivity::class.java))
                 finish()
+            }
+        })
+
+        viewModel.error.observe(this, Observer {
+            if (it != null){
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                viewModel.error.postValue(null)
             }
         })
 

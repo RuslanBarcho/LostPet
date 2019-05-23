@@ -62,6 +62,7 @@
         android:id="@+id/settings_phone"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -77,6 +78,7 @@
         android:textColor="@android:color/background_dark"
         android:textColorHint="@android:color/background_dark"
         android:translationZ="2dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

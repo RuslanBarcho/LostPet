@@ -24,7 +24,7 @@ class AdvertViewModel: ViewModel(){
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(advert::postValue) {
-                    if (it is HttpException) error.postValue(it.message()) else error.postValue("Problem with internet connection")
+                    if (it is HttpException) error.postValue(it.message) else error.postValue("Problem with internet connection")
                 }
     }
 
