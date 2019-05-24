@@ -14,14 +14,9 @@ class GridItemDecoration(private val mItemOffset: Int, private val columns: Int)
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
                                 state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
-        val rows = Math.ceil(state.itemCount.toDouble() / columns.toDouble()).toInt()
-        val nonEmptyFields = columns - (rows * columns - state.itemCount)
-        val beginBottom = state.itemCount - nonEmptyFields
-
         when {
-            parent.getChildLayoutPosition(view) in (0 until columns) -> outRect.set(mItemOffset, mItemOffset * 2, mItemOffset, mItemOffset)
-            parent.getChildLayoutPosition(view) in (beginBottom until state.itemCount) -> outRect.set(mItemOffset, mItemOffset, mItemOffset, mItemOffset * 2)
-            else -> outRect.set(mItemOffset, mItemOffset, mItemOffset, mItemOffset)
+            parent.getChildLayoutPosition(view) in (0 until columns) -> outRect.set(mItemOffset, mItemOffset * 2, mItemOffset, mItemOffset * 2)
+            else -> outRect.set(mItemOffset, 0, mItemOffset, mItemOffset * 2)
         }
     }
 }
