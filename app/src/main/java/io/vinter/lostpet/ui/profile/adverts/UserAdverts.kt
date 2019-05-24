@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils
 import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.ProfileFragment
+import io.vinter.lostpet.utils.GridItemDecoration
 import io.vinter.lostpet.utils.adapter.AnimalRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_user_adverts.*
 
@@ -42,6 +43,7 @@ class UserAdverts : Fragment() {
 
                 }
                 favorites_recycler.layoutManager = GridLayoutManager(context, column)
+                favorites_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
                 favorites_recycler.layoutAnimation = animation
                 favorites_recycler.adapter = adapter

@@ -79,6 +79,8 @@ class AdvertActivity : AppCompatActivity() {
                         val startEdit = Intent(this, EditActivity::class.java)
                         startEdit.putExtra("data", Advert(detail))
                         startActivityForResult(startEdit, 20)
+                    } else {
+                        viewModel.addToFavorites(preferences.getString("token", "")!!, Advert(detail))
                     }
                 }
 
@@ -96,8 +98,6 @@ class AdvertActivity : AppCompatActivity() {
                         makeCall(detail.owner!!.phoneNumber!!)
                     }
                 }
-
-                detail_advert_action.setOnClickListener{ viewModel.addToFavorites(preferences.getString("token", "")!!, Advert(detail))}
             }
         })
 

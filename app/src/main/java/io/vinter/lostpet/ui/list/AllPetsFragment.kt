@@ -19,6 +19,7 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.network.form.FilterForm
 import io.vinter.lostpet.ui.advert.AdvertActivity
 import io.vinter.lostpet.ui.list.filter.FilterFragment
+import io.vinter.lostpet.utils.GridItemDecoration
 import io.vinter.lostpet.utils.adapter.AnimalRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_all_pets.*
 
@@ -51,6 +52,7 @@ class AllPetsFragment : Fragment() {
                     activity!!.startActivityForResult(openDetail, 23)
                 }
                 all_pets_recycler.layoutManager = GridLayoutManager(context, column)
+                all_pets_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
                 all_pets_recycler.layoutAnimation = animation
                 all_pets_recycler.adapter = adapter
