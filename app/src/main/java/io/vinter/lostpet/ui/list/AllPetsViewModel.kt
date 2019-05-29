@@ -16,6 +16,7 @@ import retrofit2.HttpException
 class AllPetsViewModel : ViewModel() {
 
     var adverts = MutableLiveData<ArrayList<Advert>>()
+    var addictionAdverts = MutableLiveData<ArrayList<Advert>>()
     var error = MutableLiveData<String>()
 
     fun getAllAdverts(token: String) {

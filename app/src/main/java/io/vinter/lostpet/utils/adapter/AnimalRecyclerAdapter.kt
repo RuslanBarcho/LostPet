@@ -2,7 +2,6 @@ package io.vinter.lostpet.utils.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
@@ -47,5 +45,11 @@ class AnimalRecyclerAdapter(private val adverts: ArrayList<Advert>, private val 
     class AnimalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView = itemView.findViewById(R.id.item_pic)
         var name: TextView = itemView.findViewById(R.id.item_descr)
+    }
+
+    fun addItems(adverts: ArrayList<Advert>){
+        val beginIndex = this.adverts.size
+        this.adverts.addAll(adverts)
+        this.notifyItemRangeInserted(beginIndex, this.adverts.size)
     }
 }
