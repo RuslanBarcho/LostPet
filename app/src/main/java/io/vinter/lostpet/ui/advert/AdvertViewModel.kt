@@ -37,4 +37,14 @@ class AdvertViewModel: ViewModel(){
                     if (it is HttpException) error.postValue(it.message()) else error.postValue("Problem with internet connection")
                 }
     }
+
+    fun deleteFromFavs(token: String, id: String){
+        NetModule.retrofit.create(UserService::class.java)
+                .deleteFromFavs("Bearer $token", id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(message::postValue) {
+                    if (it is HttpException) error.postValue(it.message()) else error.postValue("Problem with internet connection")
+                }
+    }
 }

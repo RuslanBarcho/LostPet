@@ -20,6 +20,9 @@ interface UserService {
     @POST("user/favs/add")
     fun addToFavs(@Header("Authorization") token: String, @Body advert: Advert): Single<Message>
 
+    @DELETE("user/favs")
+    fun deleteFromFavs(@Header("Authorization") token: String, @Query("advertId") id: String): Single<Message>
+
     @GET("user/favs")
     fun getFavs(@Header("Authorization") token: String): Single<ArrayList<Advert>>
 

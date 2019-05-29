@@ -37,9 +37,7 @@ class UserAdverts : Fragment() {
             if (it != null){
                 var column = 2
                 if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) column = 3
-                val adverts = it
-                adverts.reverse()
-                val adapter = AnimalRecyclerAdapter(adverts, context!!) { id ->
+                val adapter = AnimalRecyclerAdapter(it, context!!) { id ->
 
                 }
                 favorites_recycler.layoutManager = GridLayoutManager(context, column)

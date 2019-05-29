@@ -75,13 +75,12 @@ class AdvertActivity : AppCompatActivity() {
                 }
 
                 detail_advert_action.setOnClickListener {
-                    if (userAd) {
+                    if (userAd){
                         val startEdit = Intent(this, EditActivity::class.java)
                         startEdit.putExtra("data", Advert(detail))
                         startActivityForResult(startEdit, 20)
-                    } else {
-                        viewModel.addToFavorites(preferences.getString("token", "")!!, Advert(detail))
-                    }
+                    } else if (!viewModel.advert.value!!.isFavorite!!) viewModel.addToFavorites(preferences.getString("token", "")!!, Advert(detail))
+                    else if (viewModel.advert.value!!.isFavorite!!) viewModel.deleteFromFavs(preferences.getString("token", "")!!, detail.id!!)
                 }
 
                 detail_advert_call.setOnClickListener { _ ->
@@ -103,9 +102,10 @@ class AdvertActivity : AppCompatActivity() {
 
         viewModel.message.observe(this, Observer {
             if (it != null){
-                Toast.makeText(this, "Добавлено", Toast.LENGTH_SHORT).show()
-                viewModel.advert.value?.isFavorite = true
-                detail_advert_action.setImageResource(R.drawable.ic_featured_filled)
+                Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                viewModel.advert.value?.isFavorite = !viewModel.advert.value?.isFavorite!!
+                if (viewModel.advert.value?.isFavorite!!) detail_advert_action.setImageResource(R.drawable.ic_featured_filled)
+                else detail_advert_action.setImageResource(R.drawable.ic_favourites_outline)
                 viewModel.message.postValue(null)
             }
         })
