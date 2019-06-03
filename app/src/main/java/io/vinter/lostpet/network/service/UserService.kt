@@ -18,7 +18,7 @@ interface UserService {
     fun createUser(@Body registerForm: RegisterForm): Single<Message>
 
     @POST("user/favs/add")
-    fun addToFavs(@Header("Authorization") token: String, @Body advert: Advert): Single<Message>
+    fun addToFavs(@Header("Authorization") token: String, @Query("advertId") id: String): Single<Message>
 
     @DELETE("user/favs")
     fun deleteFromFavs(@Header("Authorization") token: String, @Query("advertId") id: String): Single<Message>

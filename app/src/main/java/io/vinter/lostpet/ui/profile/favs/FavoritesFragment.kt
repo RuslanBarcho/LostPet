@@ -3,6 +3,7 @@ package io.vinter.lostpet.ui.profile.favs
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 
 import io.vinter.lostpet.R
+import io.vinter.lostpet.ui.advert.AdvertActivity
 import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.ProfileFragment
 import io.vinter.lostpet.utils.GridItemDecoration
@@ -21,6 +23,9 @@ import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class FavoritesFragment : Fragment() {
 
+    private lateinit var viewModel: FavoritesViewModel
+    private lateinit var adapter: AnimalRecyclerAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_favorites, container, false)
@@ -28,7 +33,7 @@ class FavoritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel = ViewModelProviders.of(this).get(FavoritesViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(FavoritesViewModel::class.java)
         val preferences = context!!.getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
         if (viewModel.adverts.value == null) viewModel.getFavorites(preferences.getString("token", "")!!)
 
@@ -36,11 +41,13 @@ class FavoritesFragment : Fragment() {
             if (it != null){
                 var column = 2
                 if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) column = 3
-                val adapter = AnimalRecyclerAdapter(it, context!!) { id ->
-
+                adapter = AnimalRecyclerAdapter(it, context!!) { id ->
+                    val openDetail = Intent(activity, AdvertActivity::class.java)
+                    openDetail.putExtra("advertId", id)
+                    startActivityForResult(openDetail, 33)
                 }
                 favorites_recycler.layoutManager = GridLayoutManager(context, column)
-                favorites_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
+                if (favorites_recycler.itemDecorationCount == 0)favorites_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
                 favorites_recycler.layoutAnimation = animation
                 favorites_recycler.adapter = adapter
@@ -51,6 +58,20 @@ class FavoritesFragment : Fragment() {
             (activity as MainActivity).changeProfilePage(ProfileFragment())
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == 33 && data!= null) {
+            val toDelete = viewModel.adverts.value?.first { it.id == data.getStringExtra("id") }
+            val index = viewModel.adverts.value?.indexOf(toDelete)
+            if (index != null){
+                val size = viewModel.adverts.value?.size
+                viewModel.adverts.value?.removeAt(index)
+                adapter.notifyItemRemoved(index)
+                if (size != null) adapter.notifyItemRangeChanged(index, size)
+            }
+        }
     }
 
 }

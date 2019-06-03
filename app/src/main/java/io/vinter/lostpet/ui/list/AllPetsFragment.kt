@@ -52,7 +52,7 @@ class AllPetsFragment : Fragment() {
                     activity!!.startActivityForResult(openDetail, 23)
                 }
                 all_pets_recycler.layoutManager = GridLayoutManager(context, column)
-                all_pets_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
+                if (all_pets_recycler.itemDecorationCount == 0) all_pets_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
                 all_pets_recycler.layoutAnimation = animation
                 all_pets_recycler.adapter = adapter

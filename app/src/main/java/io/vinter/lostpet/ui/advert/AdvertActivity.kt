@@ -38,12 +38,13 @@ class AdvertActivity : AppCompatActivity() {
         StyleApplicator.style(this)
         viewModel = ViewModelProviders.of(this).get(AdvertViewModel::class.java)
         preferences = getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
+        val id = intent.getStringExtra("advertId")
 
         detail_advert_back.setOnClickListener {
             this.finish()
         }
 
-        if (viewModel.advert.value == null) viewModel.getAdvertDetail(preferences.getString("token", "")!!, intent.getStringExtra("advertId"))
+        if (viewModel.advert.value == null) viewModel.getAdvertDetail(preferences.getString("token", "")!!, id)
 
         viewModel.advert.observe(this, Observer {detail ->
             if (detail != null){
@@ -79,8 +80,8 @@ class AdvertActivity : AppCompatActivity() {
                         val startEdit = Intent(this, EditActivity::class.java)
                         startEdit.putExtra("data", Advert(detail))
                         startActivityForResult(startEdit, 20)
-                    } else if (!viewModel.advert.value!!.isFavorite!!) viewModel.addToFavorites(preferences.getString("token", "")!!, Advert(detail))
-                    else if (viewModel.advert.value!!.isFavorite!!) viewModel.deleteFromFavs(preferences.getString("token", "")!!, detail.id!!)
+                    } else if (!viewModel.advert.value!!.isFavorite!!) viewModel.addToFavorites(preferences.getString("token", "")!!, id)
+                    else if (viewModel.advert.value!!.isFavorite!!) viewModel.deleteFromFavs(preferences.getString("token", "")!!, id)
                 }
 
                 detail_advert_call.setOnClickListener { _ ->
@@ -105,7 +106,12 @@ class AdvertActivity : AppCompatActivity() {
                 Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 viewModel.advert.value?.isFavorite = !viewModel.advert.value?.isFavorite!!
                 if (viewModel.advert.value?.isFavorite!!) detail_advert_action.setImageResource(R.drawable.ic_featured_filled)
-                else detail_advert_action.setImageResource(R.drawable.ic_favourites_outline)
+                else {
+                    detail_advert_action.setImageResource(R.drawable.ic_favourites_outline)
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("id", id)
+                    setResult(33, resultIntent)
+                }
                 viewModel.message.postValue(null)
             }
         })
@@ -121,8 +127,10 @@ class AdvertActivity : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     private fun makeCall(number: String) {
+        var phoneString = number
+        if (number[0] == '7') phoneString = "+$phoneString"
         val phoneIntent = Intent(Intent.ACTION_CALL)
-        phoneIntent.data = Uri.parse("tel:$number")
+        phoneIntent.data = Uri.parse("tel:$phoneString")
         startActivity(phoneIntent)
     }
 

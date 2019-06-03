@@ -2,6 +2,7 @@ package io.vinter.lostpet.ui.advert
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.vinter.lostpet.entity.Message
@@ -28,9 +29,9 @@ class AdvertViewModel: ViewModel(){
                 }
     }
 
-    fun addToFavorites(token: String, advert: Advert){
+    fun addToFavorites(token: String, advertId: String){
         NetModule.retrofit.create(UserService::class.java)
-                .addToFavs("Bearer $token", advert)
+                .addToFavs("Bearer $token", advertId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(message::postValue) {
@@ -39,6 +40,7 @@ class AdvertViewModel: ViewModel(){
     }
 
     fun deleteFromFavs(token: String, id: String){
+        Log.i("ID ADVERT TO DELETE", id)
         NetModule.retrofit.create(UserService::class.java)
                 .deleteFromFavs("Bearer $token", id)
                 .subscribeOn(Schedulers.io())

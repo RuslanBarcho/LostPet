@@ -3,6 +3,7 @@ package io.vinter.lostpet.ui.profile.adverts
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 
 import io.vinter.lostpet.R
+import io.vinter.lostpet.ui.advert.AdvertActivity
 import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.ProfileFragment
 import io.vinter.lostpet.utils.GridItemDecoration
@@ -38,10 +40,12 @@ class UserAdverts : Fragment() {
                 var column = 2
                 if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) column = 3
                 val adapter = AnimalRecyclerAdapter(it, context!!) { id ->
-
+                    val openDetail = Intent(activity, AdvertActivity::class.java)
+                    openDetail.putExtra("advertId", id)
+                    startActivityForResult(openDetail, 23)
                 }
                 favorites_recycler.layoutManager = GridLayoutManager(context, column)
-                favorites_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
+                if (favorites_recycler.itemDecorationCount == 0) favorites_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
                 favorites_recycler.layoutAnimation = animation
                 favorites_recycler.adapter = adapter
