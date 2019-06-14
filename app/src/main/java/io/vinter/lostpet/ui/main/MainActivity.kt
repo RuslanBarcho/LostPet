@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode){
             22 -> (fragmentManager.findFragmentByTag("all") as AllPetsFragment).update()
-            11 -> (fragmentManager.findFragmentByTag("all") as AllPetsFragment).update()
         }
     }
 

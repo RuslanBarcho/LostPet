@@ -15,6 +15,7 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
 import io.vinter.lostpet.entity.advert.Location
 import io.vinter.lostpet.ui.create.location.LocationPickFragment
+import io.vinter.lostpet.ui.dialog.ProgressDialog
 import io.vinter.lostpet.utils.StyleApplicator
 import io.vinter.lostpet.utils.adapter.AddPictureRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_create.*
@@ -50,6 +51,9 @@ class CreateActivity : AppCompatActivity() {
                 2 -> advertType = "good-hands"
             }
             val advert = Advert(animalType, advertType, create_title.text.toString(), create_description.text.toString())
+            val progress = ProgressDialog()
+            progress.show(supportFragmentManager, "progress")
+            progress.dialog.setOnDismissListener { viewModel.disposable.dispose() }
             viewModel.postAdvert(this, preferences.getString("token", "")!!, advert)
         }
 

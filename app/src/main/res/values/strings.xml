@@ -47,4 +47,5 @@
     <string name="select_location">Select location</string>
     <string name="cat">Cat</string>
     <string name="dog">Dog</string>
+    <string name="welcome">Welcome!</string>
 </resources>

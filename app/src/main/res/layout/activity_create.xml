@@ -47,6 +47,7 @@
                     android:textColor="@color/colorAccentDark"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView

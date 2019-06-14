@@ -43,6 +43,7 @@ class AllPetsFragment : Fragment() {
         if (viewModel.adverts.value == null) viewModel.getAllAdverts(preferences.getString("token", "")!!)
 
         viewModel.adverts.observe(this, Observer {
+            adverts_refresh.isRefreshing = false
             if (it != null){
                 var column = 2
                 if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) column = 3
@@ -76,6 +77,8 @@ class AllPetsFragment : Fragment() {
                 return false
             }
         })
+
+        adverts_refresh.setOnRefreshListener { update() }
     }
 
     fun update(){

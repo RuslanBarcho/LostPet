@@ -10,51 +10,63 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_marginBottom="40dp"
         app:srcCompat="@drawable/ic_login_icon" />
 
     <EditText
         android:id="@+id/login_login"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/ripple_input"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/background_input_setings"
         android:ems="10"
         android:hint="@string/phone_number"
         android:inputType="phone"
         android:paddingBottom="10dp"
         android:paddingLeft="15dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="@android:color/background_dark" />
 
     <EditText
         android:id="@+id/login_password"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/ripple_input"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginBottom="38dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/background_input_setings"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:paddingBottom="10dp"
         android:paddingLeft="15dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        android:textColor="@android:color/background_dark"
+        android:textColorHint="@android:color/background_dark" />
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/ripple_accent"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:text="@string/login" />
+        android:layout_width="220dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/background_button_negative"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/login"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/ask_no_account"
         android:textColor="@color/colorAccentDark"
@@ -62,12 +74,15 @@
 
     <Button
         android:id="@+id/login_register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="220dp"
+        android:layout_height="46dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/ripple_accent"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:text="@string/register" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/background_button_positive"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="@string/register"
+        android:textSize="14sp" />
 
 </LinearLayout>

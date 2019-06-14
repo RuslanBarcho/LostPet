@@ -6,6 +6,7 @@ import android.content.Context
 import android.net.Uri
 import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.vinter.lostpet.entity.Message
 import io.vinter.lostpet.entity.advert.Advert
@@ -25,6 +26,7 @@ class CreateViewModel: ViewModel(){
     var error = MutableLiveData<String>()
     var fileUri = MutableLiveData<ArrayList<Uri>>()
     var location = MutableLiveData<Location>()
+    lateinit var disposable: Disposable
 
     fun postAdvert(context: Context, token: String, advert: Advert){
         val uri = fileUri.value
@@ -34,7 +36,7 @@ class CreateViewModel: ViewModel(){
             uri.forEachIndexed {index, u -> files.add(prepareMultipart(u, context, index))}
             if (location.value != null) locationPart = MultipartBody.Part.createFormData("location", Gson().toJson(location.value))
 
-            NetModule.retrofit.create(AdvertService::class.java)
+            disposable = NetModule.retrofit.create(AdvertService::class.java)
                     .createAdvert("Bearer $token", files,
                             MultipartBody.Part.createFormData("json", Gson().toJson(advert)),
                             locationPart)

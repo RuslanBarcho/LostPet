@@ -10,7 +10,7 @@
 
     <item android:id="@android:id/background">
         <shape>
-            <solid android:color="#6AC2EB"/>
+            <gradient android:type="linear" android:endColor="#6AA5EB" android:startColor="#6AC2EB" android:angle="45.0" />
             <corners android:radius="5dp" />
         </shape>
     </item>
