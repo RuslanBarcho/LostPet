@@ -19,8 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:elevation="3dp"
-            android:translationZ="8dp"
             app:layout_constraintBottom_toTopOf="@+id/adverts_search"
             app:layout_constraintTop_toTopOf="@+id/adverts_search"
             app:layout_scrollFlags="scroll|enterAlways|snap">
@@ -45,7 +43,7 @@
             <SearchView
                 android:id="@+id/adverts_search"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/light_container"
@@ -58,7 +56,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/pets_filter_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         </android.support.constraint.ConstraintLayout>
 

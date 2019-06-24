@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="63" />
+                                                <entry key="scalingPercent" value="58" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -35,7 +35,7 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="ffffff" />
-                                      <entry key="foregroundImage" value="E:\Work Folders\Lost Pets\Drawables\launcher.jpg" />
+                                      <entry key="foregroundImage" value="E:\Work Folders\Lost Pets\Drawables\launcher-4.4.png" />
                                     </map>
                                   </option>
                                 </PersistentState>
