@@ -10,7 +10,7 @@
     android:background="@drawable/background_container_ripple"
     android:clickable="true"
     android:elevation="3dp"
-    android:translationZ="5dp">
+    android:translationZ="2dp">
 
     <ImageView
         android:id="@+id/profile_menu_icon"

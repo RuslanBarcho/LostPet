@@ -75,7 +75,7 @@
                 android:paddingRight="8dp"
                 android:paddingTop="10dp"
                 android:textColor="@color/colorAccentDark"
-                android:textColorHint="@color/colorAccent"
+                android:textColorHint="@color/colorAccentDark"
                 android:translationZ="2dp" />
 
             <EditText
@@ -96,7 +96,7 @@
                 android:paddingRight="8dp"
                 android:paddingTop="8dp"
                 android:textColor="@color/colorAccentDark"
-                android:textColorHint="@color/colorAccent"
+                android:textColorHint="@color/colorAccentDark"
                 android:translationZ="2dp" />
 
             <Button
@@ -116,9 +116,9 @@
                 android:stateListAnimator="@null"
                 android:text="@string/location"
                 android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorAccentDark"
                 android:textSize="18sp"
-                android:translationZ="2dp" />
+                android:translationZ="1dp" />
 
             <Spinner
                 android:id="@+id/spinner_pet_type"
@@ -129,7 +129,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/background_container_ripple"
                 android:elevation="2dp"
-                android:translationZ="2dp" />
+                android:translationZ="1dp" />
 
             <Spinner
                 android:id="@+id/spinner_post_type"
@@ -141,7 +141,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/background_container_ripple"
                 android:elevation="2dp"
-                android:translationZ="2dp" />
+                android:translationZ="1dp" />
 
         </LinearLayout>
 
