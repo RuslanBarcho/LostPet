@@ -60,7 +60,7 @@ class AddPictureRecyclerAdapter(private var files: ArrayList<Uri>, private val c
         val realPath = RealPathUtil.getRealPathFromURI_API19(context, u)
         GlideApp.with(context)
                 .load(realPath)
-                .transforms(CenterCrop(), RoundedCorners(30))
+                .transforms(CenterCrop(), RoundedCorners(15))
                 .into(v)
     }
 

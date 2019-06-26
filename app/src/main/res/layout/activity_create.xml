@@ -20,9 +20,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@color/colorPrimary"
-                android:elevation="3dp"
+                android:elevation="2dp"
                 android:gravity="center_vertical"
-                android:translationZ="8dp">
+                android:translationZ="2dp">
 
                 <ImageButton
                     android:id="@+id/create_back"
