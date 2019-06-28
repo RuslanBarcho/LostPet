@@ -20,6 +20,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
 import io.vinter.lostpet.entity.advert.Location
+import io.vinter.lostpet.ui.advert.image.ImageViewActivity
 import io.vinter.lostpet.ui.edit.EditActivity
 import io.vinter.lostpet.utils.GlideApp
 import io.vinter.lostpet.utils.StyleApplicator
@@ -56,7 +57,13 @@ class AdvertActivity : AppCompatActivity() {
                 if (detail.pictureUrl != null){
                     if (detail.pictureUrl!!.size == 0){
                         configEmptyPager()
-                    } else detail_advert_image.adapter = ImagePagerAdapter(detail.pictureUrl!!, this)
+                    } else {
+                        detail_advert_image.adapter = ImagePagerAdapter(detail.pictureUrl!!, this) {
+                            val intent = Intent(this, ImageViewActivity::class.java)
+                            intent.putExtra("data", detail.pictureUrl!!)
+                            startActivity(intent)
+                        }
+                    }
                 } else {
                     configEmptyPager()
                 }

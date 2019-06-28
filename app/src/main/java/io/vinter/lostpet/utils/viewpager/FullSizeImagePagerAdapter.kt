@@ -5,20 +5,14 @@ import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.github.chrisbanes.photoview.PhotoView
 import io.vinter.lostpet.R
 import io.vinter.lostpet.utils.GlideApp
 
-class ImagePagerAdapter(private val pictureUrls: ArrayList<String>, val context: Context): PagerAdapter() {
-
-    constructor(pictureUrls: ArrayList<String>, context: Context, listener: (position: Int) -> Unit) : this(pictureUrls, context) {
-        this.listener = listener
-    }
+class FullSizeImagePagerAdapter(private val pictureUrls: ArrayList<String>, val context: Context): PagerAdapter() {
 
     private var layoutInflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    private var listener: ((Int) -> Unit)? = null
 
     override fun isViewFromObject(view: View, o: Any): Boolean {
         return view === o as LinearLayout
@@ -29,14 +23,12 @@ class ImagePagerAdapter(private val pictureUrls: ArrayList<String>, val context:
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val itemView = layoutInflater.inflate(R.layout.item_image, container, false)
-        val imageView = itemView.findViewById(R.id.item_advert_image) as ImageView
-        if (listener!= null) imageView.setOnClickListener { listener!!(position) }
+        val itemView = layoutInflater.inflate(R.layout.item_image_full, container, false)
+        val imageView = itemView.findViewById(R.id.item_image_full_size) as PhotoView
 
         GlideApp.with(context)
                 .load(pictureUrls[position])
                 .error(R.drawable.placeholder)
-                .transform(CenterCrop())
                 .into(imageView)
 
         container.addView(itemView)
@@ -46,5 +38,6 @@ class ImagePagerAdapter(private val pictureUrls: ArrayList<String>, val context:
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as LinearLayout)
     }
+
 
 }

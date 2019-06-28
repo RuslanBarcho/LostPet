@@ -17,7 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBx7gGsSk_636VhYSyAHtM3HANhze97_cE" />
@@ -25,7 +24,9 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
         <uses-library android:name="com.google.android.maps" />
 
         <activity
@@ -43,7 +44,8 @@
         </activity>
         <activity android:name=".ui.register.RegisterActivity" />
         <activity android:name=".ui.advert.AdvertActivity" />
-        <activity android:name=".ui.edit.EditActivity"></activity>
+        <activity android:name=".ui.edit.EditActivity" />
+        <activity android:name=".ui.advert.image.ImageViewActivity"></activity>
     </application>
 
 </manifest>
