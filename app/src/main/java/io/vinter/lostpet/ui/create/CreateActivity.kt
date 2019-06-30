@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_create.*
 
 class CreateActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: CreateViewModel
+    lateinit var viewModel: CreateViewModel
     private lateinit var adapter: AddPictureRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +53,6 @@ class CreateActivity : AppCompatActivity() {
             val advert = Advert(animalType, advertType, create_title.text.toString(), create_description.text.toString())
             val progress = ProgressDialog()
             progress.show(supportFragmentManager, "progress")
-            progress.dialog.setOnDismissListener { viewModel.disposable.dispose() }
             viewModel.postAdvert(this, preferences.getString("token", "")!!, advert)
         }
 

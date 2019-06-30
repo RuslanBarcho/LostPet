@@ -63,6 +63,8 @@ dependencies {
     implementation 'com.elyeproj.libraries:loaderviewlibrary:1.5.0'
     //zoom image
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    //slidr
+    implementation 'com.r0adkll:slidableactivity:2.0.6'
 }
 repositories {
     mavenCentral()
