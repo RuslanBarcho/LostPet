@@ -41,7 +41,7 @@ class FavoritesFragment : Fragment() {
             if (it != null){
                 var column = 2
                 if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) column = 3
-                adapter = AnimalRecyclerAdapter(it, context!!) { id ->
+                adapter = AnimalRecyclerAdapter(it.adverts!!, context!!) { id ->
                     val openDetail = Intent(activity, AdvertActivity::class.java)
                     openDetail.putExtra("advertId", id)
                     startActivityForResult(openDetail, 33)
@@ -63,11 +63,11 @@ class FavoritesFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == 33 && data!= null) {
-            val toDelete = viewModel.adverts.value?.first { it.id == data.getStringExtra("id") }
-            val index = viewModel.adverts.value?.indexOf(toDelete)
+            val toDelete = viewModel.adverts.value?.adverts?.first { it.id == data.getStringExtra("id") }
+            val index = viewModel.adverts.value?.adverts?.indexOf(toDelete)
             if (index != null){
-                val size = viewModel.adverts.value?.size
-                viewModel.adverts.value?.removeAt(index)
+                val size = viewModel.adverts.value?.adverts?.size
+                viewModel.adverts.value?.adverts?.removeAt(index)
                 adapter.notifyItemRemoved(index)
                 if (size != null) adapter.notifyItemRangeChanged(index, size)
             }

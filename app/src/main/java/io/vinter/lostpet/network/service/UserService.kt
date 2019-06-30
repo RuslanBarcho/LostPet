@@ -3,6 +3,7 @@ package io.vinter.lostpet.network.service
 import io.reactivex.Single
 import io.vinter.lostpet.entity.Message
 import io.vinter.lostpet.entity.advert.Advert
+import io.vinter.lostpet.entity.advert.AdvertResponse
 import io.vinter.lostpet.entity.advert.User
 import io.vinter.lostpet.entity.user.LoginResponse
 import io.vinter.lostpet.network.form.LoginForm
@@ -24,7 +25,7 @@ interface UserService {
     fun deleteFromFavs(@Header("Authorization") token: String, @Query("advertId") id: String): Single<Message>
 
     @GET("user/favs")
-    fun getFavs(@Header("Authorization") token: String): Single<ArrayList<Advert>>
+    fun getFavs(@Header("Authorization") token: String): Single<AdvertResponse>
 
     @PUT("user/edit")
     fun editUser(@Header("Authorization") token: String, @Body user:User): Single<User>

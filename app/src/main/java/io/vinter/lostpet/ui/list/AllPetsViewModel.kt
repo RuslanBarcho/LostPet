@@ -8,6 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.ArrayList
 
 import io.vinter.lostpet.entity.advert.Advert
+import io.vinter.lostpet.entity.advert.AdvertResponse
 import io.vinter.lostpet.network.NetModule
 import io.vinter.lostpet.network.form.FilterForm
 import io.vinter.lostpet.network.service.AdvertService
@@ -15,8 +16,8 @@ import retrofit2.HttpException
 
 class AllPetsViewModel : ViewModel() {
 
-    var adverts = MutableLiveData<ArrayList<Advert>>()
-    var addictionAdverts = MutableLiveData<ArrayList<Advert>>()
+    var adverts = MutableLiveData<AdvertResponse>()
+    var addictionAdverts = MutableLiveData<AdvertResponse>()
     var error = MutableLiveData<String>()
 
     fun getAllAdverts(token: String) {

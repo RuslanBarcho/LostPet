@@ -16,6 +16,7 @@ import io.vinter.lostpet.entity.advert.Advert
 import io.vinter.lostpet.entity.advert.Location
 import io.vinter.lostpet.ui.create.location.LocationPickFragment
 import io.vinter.lostpet.ui.dialog.ProgressDialog
+import io.vinter.lostpet.utils.PermissionManager
 import io.vinter.lostpet.utils.StyleApplicator
 import io.vinter.lostpet.utils.adapter.AddPictureRecyclerAdapter
 import kotlinx.android.synthetic.main.activity_create.*
@@ -98,10 +99,12 @@ class CreateActivity : AppCompatActivity() {
     }
 
     private fun getImageFromLibrary(){
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 44)
+        PermissionManager.requestFilePermission(this, this){
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), 44)
+        }
     }
 
     fun setLocation(location: Location) {
