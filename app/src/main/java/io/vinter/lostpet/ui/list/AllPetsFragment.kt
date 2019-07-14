@@ -60,6 +60,7 @@ class AllPetsFragment : Fragment() {
                 all_pets_recycler.layoutAnimation = animation
                 all_pets_recycler.adapter = adapter
 
+                all_pets_recycler.clearOnScrollListeners()
                 all_pets_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         super.onScrolled(recyclerView, dx, dy)
