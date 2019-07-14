@@ -14,32 +14,48 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
 import io.vinter.lostpet.utils.GlideApp
 
-class AnimalRecyclerAdapter(private val adverts: ArrayList<Advert>, private val context: Context, val listener: (String) -> Unit) : RecyclerView.Adapter<AnimalRecyclerAdapter.AnimalViewHolder>() {
+class AnimalRecyclerAdapter(private val adverts: ArrayList<Advert>, private val context: Context, val listener: (String) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): AnimalViewHolder {
+    val LOADER = 1
+    private var showLoader = false
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context)
-        val itemView = inflater.inflate(R.layout.item_animal, viewGroup, false)
-        return AnimalViewHolder(itemView)
+        return if (i == LOADER) {
+            val itemView = inflater.inflate(R.layout.loader, viewGroup, false)
+            LoaderViewHolder(itemView)
+        } else {
+            val itemView = inflater.inflate(R.layout.item_animal, viewGroup, false)
+            AnimalViewHolder(itemView)
+        }
     }
 
-    override fun onBindViewHolder(animalViewHolder: AnimalViewHolder, i: Int) {
-        animalViewHolder.name.text = adverts[i].advertTitle
+    override fun onBindViewHolder(animalViewHolder: RecyclerView.ViewHolder, i: Int) {
+        if (animalViewHolder is AnimalViewHolder){
+            animalViewHolder.name.text = adverts[i].advertTitle
 
-        var pictureUrl = ""
-        if (adverts[i].puctureUrl!!.size > 0) pictureUrl = adverts[i].puctureUrl!![0]
+            var pictureUrl = ""
+            if (adverts[i].puctureUrl!!.size > 0) pictureUrl = adverts[i].puctureUrl!![0]
 
-        GlideApp.with(context)
-                .load(pictureUrl)
-                .override(300, 300)
-                .placeholder(R.drawable.light_container)
-                .error(R.drawable.placeholder)
-                .transform(CenterCrop())
-                .into(animalViewHolder.image)
-        animalViewHolder.itemView.setOnClickListener { listener(adverts[i].id!!) }
+            GlideApp.with(context)
+                    .load(pictureUrl)
+                    .override(300, 300)
+                    .placeholder(R.drawable.light_container)
+                    .error(R.drawable.placeholder)
+                    .transform(CenterCrop())
+                    .into(animalViewHolder.image)
+            animalViewHolder.itemView.setOnClickListener { listener(adverts[i].id!!) }
+        }
     }
 
     override fun getItemCount(): Int {
-        return adverts.size
+        if (!showLoader) return adverts.size
+        return adverts.size + 1
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (position == adverts.size) return 1
+        return super.getItemViewType(position)
     }
 
     class AnimalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,13 +63,23 @@ class AnimalRecyclerAdapter(private val adverts: ArrayList<Advert>, private val 
         var name: TextView = itemView.findViewById(R.id.item_descr)
     }
 
+    class LoaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
     fun addItems(adverts: ArrayList<Advert>){
         val beginIndex = this.adverts.size
+        showLoader = false
+        notifyItemRemoved(beginIndex)
+
         this.adverts.addAll(adverts)
         this.notifyItemRangeInserted(beginIndex, this.adverts.size)
     }
 
     fun getLastId(): String {
         return adverts.last().id!!
+    }
+
+    fun addLoader(){
+        showLoader = true
+        this.notifyItemInserted(adverts.size)
     }
 }

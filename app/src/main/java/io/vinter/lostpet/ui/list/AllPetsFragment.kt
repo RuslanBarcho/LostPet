@@ -53,7 +53,17 @@ class AllPetsFragment : Fragment() {
                     openDetail.putExtra("advertId", id)
                     activity!!.startActivityForResult(openDetail, 23)
                 }
+
                 val layoutManager = GridLayoutManager(context, column)
+                layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return when (adapter.getItemViewType(position)){
+                            adapter.LOADER -> column
+                            else -> 1
+                        }
+                    }
+                }
+
                 all_pets_recycler.layoutManager = layoutManager
                 if (all_pets_recycler.itemDecorationCount == 0) all_pets_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
@@ -67,6 +77,7 @@ class AllPetsFragment : Fragment() {
                         val totalItemCount = layoutManager.itemCount
                         val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
                         if (!viewModel.loading && totalItemCount <= lastVisibleItem + 1 && it.count!! > totalItemCount) {
+                            recyclerView.post {adapter.addLoader()}
                             viewModel.refresh(preferences.getString("token", "")!!, adapter.getLastId())
                         }
                     }
