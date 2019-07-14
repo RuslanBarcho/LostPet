@@ -7,6 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -66,8 +67,10 @@ class CreateActivity : AppCompatActivity() {
         }
 
         create_location.setOnClickListener {
-            val locationPicker = LocationPickFragment()
-            locationPicker.show(supportFragmentManager, "locationPicker")
+            Handler().post{
+                val locationPicker = LocationPickFragment()
+                if (supportFragmentManager.findFragmentByTag("locationPicker") == null) locationPicker.show(supportFragmentManager, "locationPicker")
+            }
         }
 
         viewModel.message.observe(this, Observer {

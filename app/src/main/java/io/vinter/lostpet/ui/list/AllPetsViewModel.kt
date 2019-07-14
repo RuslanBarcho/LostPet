@@ -22,7 +22,7 @@ class AllPetsViewModel : ViewModel() {
     fun getAllAdverts(token: String, fromItem: String?) {
         loading = true
         NetModule.retrofit.create(AdvertService::class.java)
-                .getAllAdverts("Bearer $token")
+                .getAllAdverts("Bearer $token", fromItem)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({result ->
@@ -35,7 +35,7 @@ class AllPetsViewModel : ViewModel() {
     fun getFilteredAdverts(token: String, filter: FilterForm, fromItem: String?){
         loading = true
         NetModule.retrofit.create(AdvertService::class.java)
-                .getFilteredAdverts("Bearer $token", filter)
+                .getFilteredAdverts("Bearer $token", filter, fromItem)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({result ->
@@ -48,7 +48,7 @@ class AllPetsViewModel : ViewModel() {
     fun searchAdverts(token: String, query: String, fromItem: String?) {
         loading = true
         NetModule.retrofit.create(AdvertService::class.java)
-                .searchAdverts("Bearer $token", query)
+                .searchAdverts("Bearer $token", query, fromItem)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->

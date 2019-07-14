@@ -11,13 +11,13 @@ import retrofit2.http.*
 
 interface AdvertService {
     @GET("/posts")
-    fun getAllAdverts(@Header("Authorization") token: String): Single<AdvertResponse>
+    fun getAllAdverts(@Header("Authorization") token: String, @Query("last") last: String?): Single<AdvertResponse>
 
     @GET("/posts/search")
-    fun searchAdverts(@Header("Authorization") token: String, @Query("q") q: String): Single<AdvertResponse>
+    fun searchAdverts(@Header("Authorization") token: String, @Query("q") q: String, @Query("last") last: String?): Single<AdvertResponse>
 
     @POST("/posts/filtered")
-    fun getFilteredAdverts(@Header("Authorization") token: String, @Body filterForm: FilterForm): Single<AdvertResponse>
+    fun getFilteredAdverts(@Header("Authorization") token: String, @Body filterForm: FilterForm, @Query("last") last: String?): Single<AdvertResponse>
 
     @GET("/posts/user-ads")
     fun getUserAdverts(@Header("Authorization") token: String): Single<AdvertResponse>
