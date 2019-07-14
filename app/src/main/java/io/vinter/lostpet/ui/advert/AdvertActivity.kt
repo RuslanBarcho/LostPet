@@ -105,6 +105,10 @@ class AdvertActivity : AppCompatActivity() {
                         makeCall(detail.owner!!.phoneNumber!!)
                     }
                 }
+
+                detail_advert_mesage.setOnClickListener {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", detail.owner!!.phoneNumber!!, null)))
+                }
             }
         })
 

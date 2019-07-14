@@ -52,4 +52,8 @@ class AnimalRecyclerAdapter(private val adverts: ArrayList<Advert>, private val 
         this.adverts.addAll(adverts)
         this.notifyItemRangeInserted(beginIndex, this.adverts.size)
     }
+
+    fun getLastId(): String {
+        return adverts.last().id!!
+    }
 }

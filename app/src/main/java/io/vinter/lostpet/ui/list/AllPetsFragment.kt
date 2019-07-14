@@ -9,6 +9,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +41,7 @@ class AllPetsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(AllPetsViewModel::class.java)
         preferences = context!!.getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
-        if (viewModel.adverts.value == null) viewModel.getAllAdverts(preferences.getString("token", "")!!)
+        if (viewModel.adverts.value == null) viewModel.getAllAdverts(preferences.getString("token", "")!!, null)
 
         viewModel.adverts.observe(this, Observer {
             adverts_refresh.isRefreshing = false
@@ -52,12 +53,28 @@ class AllPetsFragment : Fragment() {
                     openDetail.putExtra("advertId", id)
                     activity!!.startActivityForResult(openDetail, 23)
                 }
-                all_pets_recycler.layoutManager = GridLayoutManager(context, column)
+                val layoutManager = GridLayoutManager(context, column)
+                all_pets_recycler.layoutManager = layoutManager
                 if (all_pets_recycler.itemDecorationCount == 0) all_pets_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
                 all_pets_recycler.layoutAnimation = animation
                 all_pets_recycler.adapter = adapter
+
+                all_pets_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+                        val totalItemCount = layoutManager.itemCount
+                        val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                        if (!viewModel.loading && totalItemCount <= lastVisibleItem + 1 && it.count!! > totalItemCount) {
+                            viewModel.refresh(preferences.getString("token", "")!!, adapter.getLastId())
+                        }
+                    }
+                })
             }
+        })
+
+        viewModel.addictionAdverts.observe(this, Observer {
+            if (it != null) adapter.addItems(it.adverts!!)
         })
 
         pets_filter_button.setOnClickListener {
@@ -69,7 +86,7 @@ class AllPetsFragment : Fragment() {
         adverts_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(s: String): Boolean {
                 adverts_search.clearFocus()
-                viewModel.searchAdverts(preferences.getString("token", "")!!, s)
+                viewModel.searchAdverts(preferences.getString("token", "")!!, s, null)
                 return false
             }
 
@@ -82,11 +99,11 @@ class AllPetsFragment : Fragment() {
     }
 
     fun update(){
-        viewModel.getAllAdverts(preferences.getString("token", "")!!)
+        viewModel.refresh(preferences.getString("token", "")!!, null)
     }
 
     fun filterList(filer: FilterForm){
-        viewModel.getFilteredAdverts(preferences.getString("token", "")!!, filer)
+        viewModel.getFilteredAdverts(preferences.getString("token", "")!!, filer, null)
     }
 
 }
