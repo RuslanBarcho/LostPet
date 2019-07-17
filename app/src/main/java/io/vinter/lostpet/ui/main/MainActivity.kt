@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                     .add(R.id.content_container, ProfileFragment(), "profile")
                     .add(R.id.content_container, AllPetsFragment(), "all")
                     .commit()
-            fragmentManager.popBackStackImmediate()
         }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)

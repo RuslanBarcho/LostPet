@@ -42,7 +42,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.register.RegisterActivity" />
+        <activity android:name=".ui.register.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.advert.AdvertActivity" />
         <activity android:name=".ui.edit.EditActivity" />
         <activity android:name=".ui.advert.image.ImageViewActivity"></activity>

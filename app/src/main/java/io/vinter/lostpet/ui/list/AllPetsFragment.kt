@@ -118,4 +118,9 @@ class AllPetsFragment : Fragment() {
         viewModel.getFilteredAdverts(preferences.getString("token", "")!!, filer, null)
     }
 
+    override fun onResume() {
+        super.onResume()
+        adverts_search.clearFocus()
+    }
+
 }
