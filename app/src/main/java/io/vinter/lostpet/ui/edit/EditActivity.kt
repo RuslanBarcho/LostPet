@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.widget.Toast
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
-import io.vinter.lostpet.utils.StyleApplicator
+import io.vinter.lostpet.utils.config.StyleApplicator
 import kotlinx.android.synthetic.main.activity_edit.*
 
 class EditActivity : AppCompatActivity() {

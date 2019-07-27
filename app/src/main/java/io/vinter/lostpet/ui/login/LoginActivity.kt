@@ -11,7 +11,7 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.network.form.LoginForm
 import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.register.RegisterActivity
-import io.vinter.lostpet.utils.StyleApplicator
+import io.vinter.lostpet.utils.config.StyleApplicator
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {

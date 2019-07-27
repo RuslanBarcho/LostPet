@@ -1,4 +1,4 @@
-package io.vinter.lostpet.utils
+package io.vinter.lostpet.utils.config
 
 import android.app.Activity
 import android.os.Build
@@ -15,12 +15,16 @@ object StyleApplicator {
      * @param activity активность, к которой необходимо применить стиль
      */
     fun style(activity: Activity) {
+        val view = activity.window.decorView
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val view = activity.window.decorView
             view.systemUiVisibility = view.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             activity.window.statusBarColor = activity.applicationContext.getColor(R.color.colorPrimary)
         } else {
             activity.window.statusBarColor = activity.resources.getColor(R.color.colorAccent)
         }
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1){
+//            view.systemUiVisibility = view.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+//            activity.window.navigationBarColor = activity.getColor(config.navBarColor)
+//        }
     }
 }

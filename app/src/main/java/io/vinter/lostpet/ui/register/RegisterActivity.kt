@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import io.vinter.lostpet.R
 import io.vinter.lostpet.network.form.RegisterForm
-import io.vinter.lostpet.utils.StyleApplicator
+import io.vinter.lostpet.utils.config.StyleApplicator
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {

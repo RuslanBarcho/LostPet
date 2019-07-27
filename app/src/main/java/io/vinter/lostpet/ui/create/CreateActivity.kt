@@ -18,8 +18,9 @@ import io.vinter.lostpet.entity.advert.Location
 import io.vinter.lostpet.ui.create.location.LocationPickFragment
 import io.vinter.lostpet.ui.dialog.ProgressDialog
 import io.vinter.lostpet.utils.PermissionManager
-import io.vinter.lostpet.utils.StyleApplicator
+import io.vinter.lostpet.utils.config.StyleApplicator
 import io.vinter.lostpet.utils.adapter.AddPictureRecyclerAdapter
+import io.vinter.lostpet.utils.config.StyleConfig
 import kotlinx.android.synthetic.main.activity_create.*
 
 class CreateActivity : AppCompatActivity() {

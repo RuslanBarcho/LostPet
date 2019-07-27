@@ -2,7 +2,6 @@ package io.vinter.lostpet.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
@@ -10,21 +9,16 @@ import android.view.MenuItem
 
 import java.util.Objects
 
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.create.CreateActivity
 import io.vinter.lostpet.ui.list.AllPetsFragment
 import io.vinter.lostpet.ui.profile.ProfileFragment
-import io.vinter.lostpet.utils.StyleApplicator
+import io.vinter.lostpet.utils.config.StyleApplicator
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var fragmentManager: FragmentManager
-
-    @BindView(R.id.bottom_navigation)
-    lateinit var navigation: BottomNavigationView
 
     private val mOnNavigationItemSelectedListener = { item: MenuItem ->
         when (item.itemId) {
@@ -34,16 +28,10 @@ class MainActivity : AppCompatActivity() {
         true
     }
 
-    @OnClick(R.id.floatingActionButton)
-    fun add() {
-        startActivityForResult(Intent(this, CreateActivity::class.java), 11)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         StyleApplicator.style(this)
-        ButterKnife.bind(this)
 
         fragmentManager = supportFragmentManager
         if ((fragmentManager.findFragmentByTag("all") == null) and (fragmentManager.findFragmentByTag("profile") == null)) {
@@ -53,8 +41,11 @@ class MainActivity : AppCompatActivity() {
                     .commit()
         }
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        bottom_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+        floatingActionButton.setOnClickListener {
+            startActivityForResult(Intent(this, CreateActivity::class.java), 11)
+        }
     }
 
     private fun showFragment(tagShow: String, tagHide: String) {
@@ -73,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if ((Objects.requireNonNull<Fragment>(fragmentManager.findFragmentByTag("profile")) !is ProfileFragment) and (navigation.selectedItemId == R.id.navigation_profile)) {
+        if ((Objects.requireNonNull<Fragment>(fragmentManager.findFragmentByTag("profile")) !is ProfileFragment) and (bottom_navigation.selectedItemId == R.id.navigation_profile)) {
             changeProfilePage(ProfileFragment())
         } else
             super.onBackPressed()

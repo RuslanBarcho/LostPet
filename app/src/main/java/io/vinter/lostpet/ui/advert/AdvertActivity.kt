@@ -23,7 +23,7 @@ import io.vinter.lostpet.entity.advert.Location
 import io.vinter.lostpet.ui.advert.image.ImageViewActivity
 import io.vinter.lostpet.ui.edit.EditActivity
 import io.vinter.lostpet.utils.GlideApp
-import io.vinter.lostpet.utils.StyleApplicator
+import io.vinter.lostpet.utils.config.StyleApplicator
 import io.vinter.lostpet.utils.viewpager.ImagePagerAdapter
 import kotlinx.android.synthetic.main.activity_advert.*
 
