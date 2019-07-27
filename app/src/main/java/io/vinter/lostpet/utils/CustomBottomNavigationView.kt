@@ -2,8 +2,8 @@ package io.vinter.lostpet.utils
 
 import android.content.Context
 import android.graphics.*
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.content.ContextCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.core.content.ContextCompat
 import android.util.AttributeSet
 
 import io.vinter.lostpet.R

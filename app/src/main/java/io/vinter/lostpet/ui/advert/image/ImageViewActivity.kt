@@ -1,9 +1,9 @@
 package io.vinter.lostpet.ui.advert.image
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import io.vinter.lostpet.R
 import io.vinter.lostpet.utils.viewpager.FullSizeImagePagerAdapter
 import kotlinx.android.synthetic.main.activity_image_view.*

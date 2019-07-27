@@ -4,7 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.tbruyelle.rxpermissions2.RxPermissions
 
 object PermissionManager{

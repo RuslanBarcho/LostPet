@@ -1,18 +1,19 @@
 package io.vinter.lostpet.ui.advert
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import android.annotation.SuppressLint
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.vinter.lostpet.entity.Message
-import io.vinter.lostpet.entity.advert.Advert
 import io.vinter.lostpet.entity.advert.Detail
 import io.vinter.lostpet.network.NetModule
 import io.vinter.lostpet.network.service.AdvertService
 import io.vinter.lostpet.network.service.UserService
 import retrofit2.HttpException
 
+@SuppressLint("CheckResult")
 class AdvertViewModel: ViewModel(){
 
     var advert = MutableLiveData<Detail>()

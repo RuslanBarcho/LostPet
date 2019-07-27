@@ -1,7 +1,7 @@
 package io.vinter.lostpet.ui.create
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import android.content.Context
 import android.net.Uri
 import com.google.gson.Gson

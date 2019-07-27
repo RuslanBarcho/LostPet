@@ -1,16 +1,17 @@
 package io.vinter.lostpet.ui.create
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.entity.advert.Advert
@@ -96,6 +97,8 @@ class CreateActivity : AppCompatActivity() {
 
         viewModel.error.observe(this, Observer{
             if (it != null){
+                val progress = supportFragmentManager.findFragmentByTag("progress") as DialogFragment?
+                if (progress != null) progress.dismiss()
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
                 viewModel.error.postValue(null)
             }

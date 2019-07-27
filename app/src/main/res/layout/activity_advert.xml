@@ -16,14 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/detail_advert_image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true">
 
-        </android.support.v4.view.ViewPager>
+        </androidx.viewpager.widget.ViewPager>
 
         <View
             android:id="@+id/view"
@@ -60,8 +60,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/detail_advert_image"
+            android:layout_alignParentStart="true"
             android:orientation="vertical">
 
             <com.elyeproj.loaderviewlibrary.LoaderTextView
@@ -71,11 +71,11 @@
                 android:layout_alignBottom="@+id/detail_advert_image"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
                 android:elevation="5dp"
-                android:paddingBottom="8dp"
                 android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:textColor="@color/colorAccentDark"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -84,18 +84,18 @@
                 android:id="@+id/detail_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/detail_advert_description"
                 android:layout_below="@+id/detail_advert_description"
+                android:layout_alignStart="@+id/detail_advert_description"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/background_container_ripple"
                 android:drawableLeft="@drawable/ic_location_blue"
-                android:drawablePadding="8dp"
                 android:drawableRight="@drawable/ic_more"
+                android:drawablePadding="8dp"
                 android:gravity="center_vertical"
-                android:paddingBottom="8dp"
-                android:paddingRight="8dp"
                 android:paddingTop="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="8dp"
                 android:stateListAnimator="@null"
                 android:text="@string/location"
                 android:textAllCaps="false"
@@ -109,19 +109,19 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/detail_advert_name"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 android:textColor="@color/colorAccentDark"
                 android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
                 <com.elyeproj.loaderviewlibrary.LoaderTextView
@@ -146,11 +146,12 @@
                     android:textColor="@color/colorAccentDark" />
             </LinearLayout>
         </LinearLayout>
+
     </RelativeLayout>
 
     </ScrollView>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/active_buttons_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -213,6 +214,6 @@
             app:layout_constraintBottom_toTopOf="@+id/detail_advert_call"
             app:layout_constraintStart_toEndOf="@+id/detail_advert_owner_image"
             app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
