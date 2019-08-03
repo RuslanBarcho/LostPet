@@ -43,8 +43,19 @@ class AllPetsFragment : Fragment() {
         preferences = context!!.getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
         if (viewModel.adverts.value == null) viewModel.getAllAdverts(preferences.getString("token", "")!!, null)
 
+        viewModel.fragmentState.observe(this, Observer {
+            when (it){
+                State.FragmentState.NORMAL -> setVisibilityByState(View.VISIBLE, View.GONE, View.GONE)
+                State.FragmentState.ERROR -> {
+                    adverts_refresh.isRefreshing = false
+                    setVisibilityByState(View.GONE, View.GONE, View.VISIBLE)
+                }
+                State.FragmentState.LOADING -> setVisibilityByState(View.GONE, View.VISIBLE, View.GONE)
+                else -> setVisibilityByState(View.GONE, View.VISIBLE, View.GONE)
+            }
+        })
+
         viewModel.adverts.observe(this, Observer {
-            adverts_loader.visibility = View.GONE
             adverts_refresh.isRefreshing = false
             if (it != null){
                 var column = 2
@@ -79,7 +90,7 @@ class AllPetsFragment : Fragment() {
                         val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
                         if (!viewModel.loading && totalItemCount <= lastVisibleItem + 1 && it.count!! > totalItemCount) {
                             recyclerView.post {adapter.addLoader()}
-                            viewModel.refresh(preferences.getString("token", "")!!, adapter.getLastId())
+                            viewModel.refresh(preferences.getString("token", "")!!, adapter.getLastId(), false)
                         }
                     }
                 })
@@ -87,8 +98,15 @@ class AllPetsFragment : Fragment() {
         })
 
         viewModel.addictionAdverts.observe(this, Observer {
-            if (it != null) adapter.addItems(it.adverts!!)
+            if (it != null){
+                adapter.addItems(it.adverts!!)
+                viewModel.addictionAdverts.postValue(null)
+            }
         })
+
+        adverts_error.setOnRetryListener {
+            viewModel.refresh(preferences.getString("token", "")!!, null, true)
+        }
 
         pets_filter_button.setOnClickListener {
             val dialog = FilterFragment()
@@ -112,11 +130,17 @@ class AllPetsFragment : Fragment() {
     }
 
     fun update(){
-        viewModel.refresh(preferences.getString("token", "")!!, null)
+        viewModel.refresh(preferences.getString("token", "")!!, null, false)
     }
 
     fun filterList(filer: FilterForm){
         viewModel.getFilteredAdverts(preferences.getString("token", "")!!, filer, null)
+    }
+
+    private fun setVisibilityByState(recycler: Int, loader: Int, error: Int){
+        all_pets_recycler.visibility = recycler
+        adverts_loader.visibility = loader
+        adverts_error.visibility = error
     }
 
     override fun onResume() {

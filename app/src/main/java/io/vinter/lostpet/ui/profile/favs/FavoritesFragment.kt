@@ -19,6 +19,7 @@ import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.ProfileFragment
 import io.vinter.lostpet.utils.GridItemDecoration
 import io.vinter.lostpet.utils.adapter.AnimalRecyclerAdapter
+import io.vinter.lostpet.utils.config.FragmentState
 import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class FavoritesFragment : Fragment() {
@@ -37,6 +38,15 @@ class FavoritesFragment : Fragment() {
         val preferences = context!!.getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
         if (viewModel.adverts.value == null) viewModel.getFavorites(preferences.getString("token", "")!!)
 
+        viewModel.state.observe(this, Observer {
+            when (it){
+                FragmentState.NORMAL -> setVisibilityByState(View.VISIBLE, View.GONE, View.GONE)
+                FragmentState.ERROR -> setVisibilityByState(View.GONE, View.GONE, View.VISIBLE)
+                FragmentState.LOADING -> setVisibilityByState(View.GONE, View.VISIBLE, View.GONE)
+                else -> setVisibilityByState(View.GONE, View.VISIBLE, View.GONE)
+            }
+        })
+
         viewModel.adverts.observe(this, Observer {
             if (it != null){
                 favorites_loader.visibility = View.GONE
@@ -48,7 +58,7 @@ class FavoritesFragment : Fragment() {
                     startActivityForResult(openDetail, 33)
                 }
                 favorites_recycler.layoutManager = GridLayoutManager(context, column)
-                if (favorites_recycler.itemDecorationCount == 0)favorites_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
+                if (favorites_recycler.itemDecorationCount == 0) favorites_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
                 favorites_recycler.layoutAnimation = animation
                 favorites_recycler.adapter = adapter
@@ -57,6 +67,10 @@ class FavoritesFragment : Fragment() {
 
         favorites_back.setOnClickListener {
             (activity as MainActivity).changeProfilePage(ProfileFragment())
+        }
+
+        favorites_error.setOnRetryListener {
+            viewModel.getFavorites(preferences.getString("token", "")!!)
         }
 
     }
@@ -73,6 +87,12 @@ class FavoritesFragment : Fragment() {
                 if (size != null) adapter.notifyItemRangeChanged(index, size)
             }
         }
+    }
+
+    private fun setVisibilityByState(recycler: Int, loader: Int, error: Int){
+        favorites_recycler.visibility = recycler
+        favorites_loader.visibility = loader
+        favorites_error.visibility = error
     }
 
 }

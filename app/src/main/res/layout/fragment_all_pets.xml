@@ -95,6 +95,20 @@
                 app:lottie_fileName="infinity.json"
                 app:lottie_loop="true"
                 app:lottie_autoPlay="true"/>
+
+            <io.vinter.lostpet.ui.view.ErrorView
+                android:id="@+id/adverts_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/all_pets_recycler"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/all_pets_recycler" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

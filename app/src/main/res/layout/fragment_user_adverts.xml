@@ -13,10 +13,10 @@
         android:layout_height="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/favorites_recycler"
-        app:layout_constraintEnd_toEndOf="@+id/favorites_recycler"
-        app:layout_constraintStart_toStartOf="@+id/favorites_recycler"
-        app:layout_constraintTop_toTopOf="@+id/favorites_recycler"
+        app:layout_constraintBottom_toBottomOf="@+id/user_adverts_recycler"
+        app:layout_constraintEnd_toEndOf="@+id/user_adverts_recycler"
+        app:layout_constraintStart_toStartOf="@+id/user_adverts_recycler"
+        app:layout_constraintTop_toTopOf="@+id/user_adverts_recycler"
         app:lottie_autoPlay="true"
         app:lottie_colorFilter="@color/colorAccent"
         app:lottie_fileName="infinity.json"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/favorites_recycler"
+        android:id="@+id/user_adverts_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingLeft="8dp"
@@ -56,4 +56,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_adverts_back" />
+
+    <io.vinter.lostpet.ui.view.ErrorView
+        android:id="@+id/user_adverts_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/user_adverts_recycler"
+        app:layout_constraintEnd_toEndOf="@+id/user_adverts_recycler"
+        app:layout_constraintStart_toStartOf="@+id/user_adverts_recycler"
+        app:layout_constraintTop_toTopOf="@+id/user_adverts_recycler" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@ import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.ProfileFragment
 import io.vinter.lostpet.utils.GridItemDecoration
 import io.vinter.lostpet.utils.adapter.AnimalRecyclerAdapter
+import io.vinter.lostpet.utils.config.FragmentState
 import kotlinx.android.synthetic.main.fragment_user_adverts.*
 
 class UserAdverts : Fragment() {
@@ -35,6 +36,15 @@ class UserAdverts : Fragment() {
         val preferences = context!!.getSharedPreferences("userPrefs", Context.MODE_PRIVATE)
         if (viewModel.adverts.value == null) viewModel.getUserAdverts(preferences.getString("token", "")!!)
 
+        viewModel.state.observe(this, Observer {
+            when (it){
+                FragmentState.NORMAL -> setVisibilityByState(View.VISIBLE, View.GONE, View.GONE)
+                FragmentState.ERROR -> setVisibilityByState(View.GONE, View.GONE, View.VISIBLE)
+                FragmentState.LOADING -> setVisibilityByState(View.GONE, View.VISIBLE, View.GONE)
+                else -> setVisibilityByState(View.GONE, View.VISIBLE, View.GONE)
+            }
+        })
+
         viewModel.adverts.observe(this, Observer {
             if (it != null){
                 user_adverts_loader.visibility = View.GONE
@@ -45,11 +55,11 @@ class UserAdverts : Fragment() {
                     openDetail.putExtra("advertId", id)
                     startActivityForResult(openDetail, 23)
                 }
-                favorites_recycler.layoutManager = GridLayoutManager(context, column)
-                if (favorites_recycler.itemDecorationCount == 0) favorites_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
+                user_adverts_recycler.layoutManager = GridLayoutManager(context, column)
+                if (user_adverts_recycler.itemDecorationCount == 0) user_adverts_recycler.addItemDecoration(GridItemDecoration(context!!, R.dimen.item_offset, column))
                 val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
-                favorites_recycler.layoutAnimation = animation
-                favorites_recycler.adapter = adapter
+                user_adverts_recycler.layoutAnimation = animation
+                user_adverts_recycler.adapter = adapter
             }
         })
 
@@ -57,6 +67,16 @@ class UserAdverts : Fragment() {
             (activity as MainActivity).changeProfilePage(ProfileFragment())
         }
 
+        user_adverts_error.setOnRetryListener {
+            viewModel.getUserAdverts(preferences.getString("token", "")!!)
+        }
+
+    }
+
+    private fun setVisibilityByState(recycler: Int, loader: Int, error: Int){
+        user_adverts_recycler.visibility = recycler
+        user_adverts_loader.visibility = loader
+        user_adverts_error.visibility = error
     }
 
 }

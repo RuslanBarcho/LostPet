@@ -47,4 +47,5 @@
     <string name="dog">Собака</string>
     <string name="welcome">Добро пожаловать!</string>
     <string name="of">из</string>
+    <string name="retry">Повторить</string>
 </resources>
