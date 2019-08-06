@@ -3,7 +3,6 @@ package io.vinter.lostpet.utils.adapter
 import android.content.Context
 import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,9 +56,8 @@ class AddPictureRecyclerAdapter(private var files: ArrayList<Uri>, private val c
     }
 
     private fun displayImage(v: ImageView, u: Uri, context: Context){
-        val realPath = RealPathUtil.getRealPathFromURI_API19(context, u)
         GlideApp.with(context)
-                .load(realPath)
+                .load(RealPathUtil.getPathFromUri(context, u))
                 .transforms(CenterCrop(), RoundedCorners(15))
                 .into(v)
     }

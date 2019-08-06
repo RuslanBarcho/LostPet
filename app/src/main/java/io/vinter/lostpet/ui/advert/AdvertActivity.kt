@@ -61,6 +61,7 @@ class AdvertActivity : AppCompatActivity() {
                         detail_advert_image.adapter = ImagePagerAdapter(detail.pictureUrl!!, this) {
                             val intent = Intent(this, ImageViewActivity::class.java)
                             intent.putExtra("data", detail.pictureUrl!!)
+                            intent.putExtra("position", detail_advert_image.currentItem)
                             startActivity(intent)
                         }
                     }
@@ -91,7 +92,7 @@ class AdvertActivity : AppCompatActivity() {
                     else if (viewModel.advert.value!!.isFavorite!!) viewModel.deleteFromFavs(preferences.getString("token", "")!!, id)
                 }
 
-                detail_advert_call.setOnClickListener { _ ->
+                detail_advert_call.setOnClickListener {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         val rxPermissions = RxPermissions(this)
                         rxPermissions.request(Manifest.permission.CALL_PHONE,

@@ -48,4 +48,5 @@
     <string name="welcome">Добро пожаловать!</string>
     <string name="of">из</string>
     <string name="retry">Повторить</string>
+    <string name="create_missing_data">Все поля обязательны</string>
 </resources>

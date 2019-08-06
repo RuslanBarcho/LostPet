@@ -1,63 +1,135 @@
 package io.vinter.lostpet.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.CursorLoader
 import android.net.Uri
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.content.ContentUris
+import android.database.Cursor
+import android.os.Environment.getExternalStorageDirectory
 
 object RealPathUtil {
 
-    @SuppressLint("NewApi")
-    fun getRealPathFromURI_API19(context: Context, uri: Uri): String {
-        var filePath = ""
-        val wholeID = DocumentsContract.getDocumentId(uri)
+    fun getPathFromUri(context: Context, uri: Uri): String? {
 
-        // Split at colon, use second item in the array
-        val id = wholeID.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
+        // DocumentProvider
+        if (DocumentsContract.isDocumentUri(context, uri)) {
+            // ExternalStorageProvider
+            if (isExternalStorageDocument(uri)) {
+                val docId = DocumentsContract.getDocumentId(uri)
+                val split = docId.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                val type = split[0]
 
-        val column = arrayOf(MediaStore.Images.Media.DATA)
+                if ("primary".equals(type, ignoreCase = true)) {
+                    return getExternalStorageDirectory().absolutePath + "/" + split[1]
+                }
 
-        // where id is equal to
-        val sel = MediaStore.Images.Media._ID + "=?"
+            } else if (isDownloadsDocument(uri)) {
 
-        val cursor = context.contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                column, sel, arrayOf(id), null)
+                val id = DocumentsContract.getDocumentId(uri)
 
-        val columnIndex = cursor!!.getColumnIndex(column[0])
+                if (id != null && id.startsWith("raw:")) {
+                    return id.substring(4)
+                }
 
-        if (cursor.moveToFirst()) {
-            filePath = cursor.getString(columnIndex)
+                val contentUriPrefixesToTry = arrayOf("content://downloads/public_downloads", "content://downloads/my_downloads", "content://downloads/all_downloads")
+
+                for (contentUriPrefix in contentUriPrefixesToTry) {
+                    val contentUri = ContentUris.withAppendedId(Uri.parse(contentUriPrefix), java.lang.Long.valueOf(id!!))
+                    try {
+                        val path = getDataColumn(context, contentUri, null, null)
+                        if (path != null) {
+                            return path
+                        }
+                    } catch (e: Exception) {
+                    }
+
+                }
+
+            } else if (isMediaDocument(uri)) {
+                val docId = DocumentsContract.getDocumentId(uri)
+                val split = docId.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                val type = split[0]
+
+                var contentUri: Uri? = null
+                if ("image" == type) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                } else if ("video" == type) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                } else if ("audio" == type) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+                }
+
+                val selection = "_id=?"
+                val selectionArgs = arrayOf(split[1])
+
+                return getDataColumn(context, contentUri, selection, selectionArgs)
+            }// MediaProvider
+            // DownloadsProvider
+        } else if ("content".equals(uri.scheme!!, ignoreCase = true)) {
+
+            // Return the remote address
+            return if (isGooglePhotosUri(uri)) uri.lastPathSegment else getDataColumn(context, uri, null, null)
+
+        } else if ("file".equals(uri.scheme!!, ignoreCase = true)) {
+            return uri.path
+        }// File
+        // MediaStore (and general)
+
+        return null
+    }
+
+    private fun getDataColumn(context: Context, uri: Uri?, selection: String?,
+                              selectionArgs: Array<String>?): String? {
+
+        var cursor: Cursor? = null
+        val column = "_data"
+        val projection = arrayOf(column)
+
+        try {
+            cursor = context.contentResolver.query(uri!!, projection, selection, selectionArgs, null)
+            if (cursor != null && cursor.moveToFirst()) {
+                val index = cursor.getColumnIndexOrThrow(column)
+                return cursor.getString(index)
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close()
         }
-        cursor.close()
-        return filePath
+        return null
     }
 
 
-    @SuppressLint("NewApi")
-    fun getRealPathFromURI_API11to18(context: Context, contentUri: Uri): String? {
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        var result: String? = null
-
-        val cursorLoader = CursorLoader(
-                context,
-                contentUri, proj, null, null, null)
-        val cursor = cursorLoader.loadInBackground()
-
-        if (cursor != null) {
-            val column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            cursor.moveToFirst()
-            result = cursor.getString(column_index)
-        }
-        return result
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    private fun isExternalStorageDocument(uri: Uri): Boolean {
+        return "com.android.externalstorage.documents" == uri.authority
     }
 
-    fun getRealPathFromURI_BelowAPI11(context: Context, contentUri: Uri): String {
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = context.contentResolver.query(contentUri, proj, null, null, null)
-        val column_index = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        cursor.moveToFirst()
-        return cursor.getString(column_index)
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    private fun isDownloadsDocument(uri: Uri): Boolean {
+        return "com.android.providers.downloads.documents" == uri.authority
     }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    private fun isMediaDocument(uri: Uri): Boolean {
+        return "com.android.providers.media.documents" == uri.authority
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is Google Photos.
+     */
+    private fun isGooglePhotosUri(uri: Uri): Boolean {
+        return "com.google.android.apps.photos.content" == uri.authority
+    }
+
 }

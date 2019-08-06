@@ -1,5 +1,6 @@
 package io.vinter.lostpet.ui.profile.settings
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.content.Context
@@ -17,6 +18,7 @@ import okhttp3.RequestBody
 import retrofit2.HttpException
 import java.io.File
 
+@SuppressLint("CheckResult")
 class SettingsViewModel: ViewModel(){
 
     var userData = MutableLiveData<User>()
@@ -44,7 +46,7 @@ class SettingsViewModel: ViewModel(){
     }
 
     private fun prepareMultipart(uri: Uri, context: Context): MultipartBody.Part{
-        val realPath = RealPathUtil.getRealPathFromURI_API19(context, uri)
+        val realPath = RealPathUtil.getPathFromUri(context, uri)
         val file = File(realPath)
         return MultipartBody.Part.createFormData("image", file.name, RequestBody.create(MediaType.parse("multipart/form-data"), file))
     }

@@ -21,7 +21,6 @@ import io.vinter.lostpet.ui.dialog.ProgressDialog
 import io.vinter.lostpet.utils.PermissionManager
 import io.vinter.lostpet.utils.config.StyleApplicator
 import io.vinter.lostpet.utils.adapter.AddPictureRecyclerAdapter
-import io.vinter.lostpet.utils.config.StyleConfig
 import kotlinx.android.synthetic.main.activity_create.*
 
 class CreateActivity : AppCompatActivity() {
@@ -55,9 +54,11 @@ class CreateActivity : AppCompatActivity() {
                 2 -> advertType = "good-hands"
             }
             val advert = Advert(animalType, advertType, create_title.text.toString(), create_description.text.toString())
-            val progress = ProgressDialog()
-            progress.show(supportFragmentManager, "progress")
-            viewModel.postAdvert(this, preferences.getString("token", "")!!, advert)
+            if (viewModel.fileUri.value != null && create_title.text.toString() != "" && create_description.text.toString() != ""){
+                val progress = ProgressDialog()
+                progress.show(supportFragmentManager, "progress")
+                viewModel.postAdvert(preferences.getString("token", "")!!, advert, this)
+            } else Toast.makeText(this, getString(R.string.create_missing_data), Toast.LENGTH_SHORT).show()
         }
 
         create_button_cancel.setOnClickListener {
