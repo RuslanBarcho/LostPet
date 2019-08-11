@@ -66,14 +66,14 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/background_container"
-                android:elevation="2dp"
+                android:elevation="1dp"
                 android:ems="10"
                 android:hint="@string/title"
                 android:inputType="textPersonName"
-                android:paddingBottom="10dp"
                 android:paddingLeft="16dp"
-                android:paddingRight="8dp"
                 android:paddingTop="10dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="10dp"
                 android:textColor="@color/colorAccentDark"
                 android:textColorHint="@color/colorAccentDark"
                 android:translationZ="2dp" />
@@ -83,18 +83,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
                 android:background="@drawable/background_container"
-                android:elevation="2dp"
+                android:elevation="1dp"
                 android:ems="10"
                 android:gravity="top"
                 android:hint="@string/description"
                 android:inputType="textMultiLine"
-                android:paddingBottom="8dp"
                 android:paddingLeft="16dp"
-                android:paddingRight="8dp"
                 android:paddingTop="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="8dp"
                 android:textColor="@color/colorAccentDark"
                 android:textColorHint="@color/colorAccentDark"
                 android:translationZ="2dp" />
@@ -104,12 +104,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
                 android:background="@drawable/background_container_ripple"
-                android:drawablePadding="8dp"
                 android:drawableStart="@drawable/ic_location"
-                android:elevation="2dp"
+                android:drawablePadding="8dp"
+                android:elevation="1dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
                 android:paddingRight="8dp"
@@ -118,30 +118,30 @@
                 android:textAllCaps="false"
                 android:textColor="@color/colorAccentDark"
                 android:textSize="18sp"
-                android:translationZ="1dp" />
+                android:translationZ="2dp" />
 
             <Spinner
                 android:id="@+id/spinner_pet_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
                 android:background="@drawable/background_container_ripple"
-                android:elevation="2dp"
-                android:translationZ="1dp" />
+                android:elevation="1dp"
+                android:translationZ="2dp" />
 
             <Spinner
                 android:id="@+id/spinner_post_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/background_container_ripple"
-                android:elevation="2dp"
-                android:translationZ="1dp" />
+                android:elevation="1dp"
+                android:translationZ="2dp" />
 
         </LinearLayout>
 

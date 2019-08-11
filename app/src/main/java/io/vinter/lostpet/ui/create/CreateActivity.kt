@@ -70,10 +70,8 @@ class CreateActivity : AppCompatActivity() {
         }
 
         create_location.setOnClickListener {
-            Handler().post{
-                val locationPicker = LocationPickFragment()
-                if (supportFragmentManager.findFragmentByTag("locationPicker") == null) locationPicker.show(supportFragmentManager, "locationPicker")
-            }
+            val locationPicker = LocationPickFragment()
+            if (supportFragmentManager.findFragmentByTag("locationPicker") == null) locationPicker.show(supportFragmentManager, "locationPicker")
         }
 
         viewModel.message.observe(this, Observer {
@@ -99,7 +97,7 @@ class CreateActivity : AppCompatActivity() {
         viewModel.error.observe(this, Observer{
             if (it != null){
                 val progress = supportFragmentManager.findFragmentByTag("progress") as DialogFragment?
-                if (progress != null) progress.dismiss()
+                progress?.dismiss()
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
                 viewModel.error.postValue(null)
             }
