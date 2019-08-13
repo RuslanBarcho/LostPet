@@ -1,6 +1,7 @@
 package io.vinter.lostpet.ui.create.location
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -8,11 +9,13 @@ import android.graphics.drawable.ColorDrawable
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.DialogFragment
 import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,6 +27,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.create.CreateActivity
+import kotlinx.android.synthetic.main.activity_advert.view.*
 import kotlinx.android.synthetic.main.fragment_location_pick.*
 import java.io.IOException
 import java.util.*
@@ -60,8 +64,9 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
         initMap()
     }
 
+    @SuppressLint("CheckResult")
     private fun getLocationPermission(googleMap: GoogleMap) {
-        if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             val rxPermissions = RxPermissions(activity!!)
             rxPermissions.request(Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -75,8 +80,11 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
         }
     }
 
+    @SuppressLint("ResourceType")
     private fun initMap() {
         val mapView = this.fragmentManager!!.findFragmentById(R.id.map) as SupportMapFragment
+        //val locationButton = mapView.view?.findViewById(2) as ImageView?
+        //locationButton?.setImageResource(R.drawable.ic_marker)
         mapView.getMapAsync(this)
     }
 
@@ -103,8 +111,8 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.setContentView(R.layout.fragment_filter)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
         return dialog
     }
 
