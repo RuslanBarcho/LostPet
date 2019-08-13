@@ -8,28 +8,27 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.location.Geocoder
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.util.TypedValue
 import androidx.fragment.app.DialogFragment
 import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.tbruyelle.rxpermissions2.RxPermissions
 
 import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.create.CreateActivity
-import kotlinx.android.synthetic.main.activity_advert.view.*
 import kotlinx.android.synthetic.main.fragment_location_pick.*
 import java.io.IOException
+import java.lang.Exception
 import java.util.*
 
 class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
@@ -83,8 +82,19 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
     @SuppressLint("ResourceType")
     private fun initMap() {
         val mapView = this.fragmentManager!!.findFragmentById(R.id.map) as SupportMapFragment
-        //val locationButton = mapView.view?.findViewById(2) as ImageView?
-        //locationButton?.setImageResource(R.drawable.ic_marker)
+        val locationButton = mapView.view?.findViewById(2) as ImageView?
+        locationButton?.setImageResource(R.drawable.ic_location_find)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) locationButton?.foreground = resources.getDrawable(R.drawable.ripple_transparent)
+        locationButton?.setBackgroundResource(R.drawable.background_white_circle)
+        locationButton?.elevation = 12f
+
+        val params = locationButton?.layoutParams as RelativeLayout.LayoutParams?
+        params?.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
+        params?.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+        params?.setMargins(0, 0, getInDp(10f), getInDp(10f))
+
+        locationButton?.layoutParams = params
+
         mapView.getMapAsync(this)
     }
 
@@ -102,6 +112,14 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
         } catch (e: SecurityException) {
 
         }
+    }
+
+    private fun getInDp(dp: Float): Int{
+        val r = context?.resources
+        return TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dp,
+                r?.displayMetrics).toInt()
     }
 
     private fun moveCamera(latLng: LatLng, zoom: Float, googleMap: GoogleMap) {
