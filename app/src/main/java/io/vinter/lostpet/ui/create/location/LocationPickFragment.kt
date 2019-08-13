@@ -27,7 +27,6 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.create.CreateActivity
 import kotlinx.android.synthetic.main.fragment_location_pick.*
-import java.io.IOException
 import java.lang.Exception
 import java.util.*
 
@@ -45,8 +44,8 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
                        val address = Geocoder(context, Locale.getDefault()).getFromLocation(location.latitude, location.longitude, 1)
                        (activity as CreateActivity).setLocation(io.vinter.lostpet.entity.advert.Location(address[0].getAddressLine(0), location.latitude, location.longitude))
                        dismiss()
-                   } catch (e: IOException){
-                       activity!!.runOnUiThread{Toast.makeText(context, "Невозможно определить адрес", Toast.LENGTH_SHORT).show()}
+                   } catch (e: Exception){
+                       activity?.runOnUiThread{Toast.makeText(context, "Невозможно определить адрес", Toast.LENGTH_SHORT).show()}
                    }
                }.start()
            }
