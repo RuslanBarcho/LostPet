@@ -7,7 +7,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
 import android.widget.Toast

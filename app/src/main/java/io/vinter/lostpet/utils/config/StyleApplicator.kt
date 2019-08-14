@@ -19,12 +19,13 @@ object StyleApplicator {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             view.systemUiVisibility = view.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             activity.window.statusBarColor = activity.applicationContext.getColor(R.color.colorPrimary)
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1){
+                view.systemUiVisibility = view.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                activity.window.navigationBarColor = activity.getColor(R.color.colorPrimary)
+            }
         } else {
             activity.window.statusBarColor = activity.resources.getColor(R.color.colorAccent)
         }
-//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1){
-//            view.systemUiVisibility = view.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-//            activity.window.navigationBarColor = activity.getColor(config.navBarColor)
-//        }
+
     }
 }
