@@ -35,10 +35,10 @@
     <string name="settings">Settings</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
-    <string name="create">Create</string>
+    <string name="create">New advert</string>
     <string name="location">Location</string>
     <string name="cancel">Cancel</string>
-    <string name="done">Done</string>
+    <string name="publish">Publish</string>
     <string name="call">Call</string>
     <string name="send_message">Send message</string>
     <string name="my_adverts">My adverts</string>

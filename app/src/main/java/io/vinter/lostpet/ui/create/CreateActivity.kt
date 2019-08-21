@@ -60,10 +60,6 @@ class CreateActivity : AppCompatActivity() {
             } else Toast.makeText(this, getString(R.string.create_missing_data), Toast.LENGTH_SHORT).show()
         }
 
-        create_button_cancel.setOnClickListener {
-            this.finish()
-        }
-
         create_back.setOnClickListener {
             this.finish()
         }

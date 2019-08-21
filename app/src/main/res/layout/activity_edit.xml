@@ -106,6 +106,6 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="24dp"
         android:background="@drawable/background_button_positive"
-        android:text="@string/done" />
+        android:text="@string/publish" />
 
 </RelativeLayout>
