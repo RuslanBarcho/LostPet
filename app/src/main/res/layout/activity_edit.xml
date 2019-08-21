@@ -39,7 +39,8 @@
         android:gravity="center_vertical"
         android:text="@string/edit"
         android:textColor="@color/colorAccentDark"
-        android:textSize="24sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_title"
@@ -106,6 +107,6 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="24dp"
         android:background="@drawable/background_button_positive"
-        android:text="@string/publish" />
+        android:text="@string/done" />
 
 </RelativeLayout>

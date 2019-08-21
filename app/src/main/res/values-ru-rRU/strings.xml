@@ -36,7 +36,7 @@
     <string name="create">Новое объявление</string>
     <string name="location">Геопозиция</string>
     <string name="cancel">Отменить</string>
-    <string name="publish">Опубликовать</string>
+    <string name="done">Готово</string>
     <string name="call">Позвонить</string>
     <string name="send_message">Написать</string>
     <string name="my_adverts">Мои объявления</string>
@@ -49,4 +49,5 @@
     <string name="of">из</string>
     <string name="retry">Повторить</string>
     <string name="create_missing_data">Все поля обязательны</string>
+    <string name="publish">Разместить</string>
 </resources>
