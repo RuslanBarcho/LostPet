@@ -20,7 +20,7 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.network.form.FilterForm
 import io.vinter.lostpet.ui.advert.AdvertActivity
 import io.vinter.lostpet.ui.list.filter.FilterFragment
-import io.vinter.lostpet.utils.GridItemDecoration
+import io.vinter.lostpet.utils.decoration.GridItemDecoration
 import io.vinter.lostpet.utils.adapter.AnimalRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_all_pets.*
 

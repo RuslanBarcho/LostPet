@@ -23,23 +23,22 @@ class AddPictureRecyclerAdapter(private var files: ArrayList<Uri>, private val c
     }
 
     override fun onBindViewHolder(holder: PictureViewHolder, i: Int) {
-        if (i < files.size){
-            displayImage(holder.image, files[i], context)
-            holder.remove.setOnClickListener {
-                listener(i)
-            }
-            holder.remove.visibility = View.VISIBLE
-        } else {
+        if (i == 0){
             holder.image.setImageResource(R.drawable.ic_picture_add)
             holder.image.setOnClickListener {
                 listener(i)
             }
-            holder.remove.visibility = View.GONE
+            holder.remove.visibility = View.INVISIBLE
+        } else {
+            displayImage(holder.image, files[i - 1], context)
+            holder.remove.setOnClickListener {
+                listener(i)
+            }
+            holder.remove.visibility = View.VISIBLE
         }
     }
 
     override fun getItemCount(): Int {
-        if (files.size >=3 ) return files.size
         return files.size + 1
     }
 
@@ -51,8 +50,8 @@ class AddPictureRecyclerAdapter(private var files: ArrayList<Uri>, private val c
     fun removeItem(pos: Int, newList: ArrayList<Uri>){
         files = newList
         notifyItemRemoved(pos)
-        notifyItemRangeChanged(0, files.size + 1)
-        notifyItemChanged(files.size)
+        notifyItemRangeChanged(pos, files.size + 1)
+        notifyItemChanged(0)
     }
 
     private fun displayImage(v: ImageView, u: Uri, context: Context){

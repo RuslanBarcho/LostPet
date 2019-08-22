@@ -1,10 +1,9 @@
-package io.vinter.lostpet.utils
+package io.vinter.lostpet.utils.decoration
 
 import android.content.Context
 import android.graphics.Rect
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
-import android.util.Log
 import android.view.View
 
 class GridItemDecoration(private val mItemOffset: Int, private val columns: Int) : RecyclerView.ItemDecoration() {

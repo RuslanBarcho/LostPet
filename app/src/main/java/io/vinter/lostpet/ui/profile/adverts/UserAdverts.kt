@@ -17,7 +17,7 @@ import io.vinter.lostpet.R
 import io.vinter.lostpet.ui.advert.AdvertActivity
 import io.vinter.lostpet.ui.main.MainActivity
 import io.vinter.lostpet.ui.profile.ProfileFragment
-import io.vinter.lostpet.utils.GridItemDecoration
+import io.vinter.lostpet.utils.decoration.GridItemDecoration
 import io.vinter.lostpet.utils.adapter.AnimalRecyclerAdapter
 import io.vinter.lostpet.utils.config.FragmentState
 import kotlinx.android.synthetic.main.fragment_user_adverts.*

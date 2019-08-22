@@ -50,4 +50,5 @@
     <string name="retry">Повторить</string>
     <string name="create_missing_data">Все поля обязательны</string>
     <string name="publish">Разместить</string>
+    <string name="max_photo_message">Вы можете загрузить максимум 3 фото</string>
 </resources>

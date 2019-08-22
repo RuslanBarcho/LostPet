@@ -20,6 +20,7 @@ import io.vinter.lostpet.ui.dialog.ProgressDialog
 import io.vinter.lostpet.utils.PermissionManager
 import io.vinter.lostpet.utils.config.StyleApplicator
 import io.vinter.lostpet.utils.adapter.AddPictureRecyclerAdapter
+import io.vinter.lostpet.utils.decoration.AddPictureDecoration
 import kotlinx.android.synthetic.main.activity_create.*
 
 class CreateActivity : AppCompatActivity() {
@@ -114,12 +115,13 @@ class CreateActivity : AppCompatActivity() {
 
     private fun configureImageRecycler(files: ArrayList<Uri>){
         create_image_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        if (create_image_recycler.itemDecorationCount == 0) create_image_recycler.addItemDecoration(AddPictureDecoration(this, R.dimen.item_offset))
         adapter =  AddPictureRecyclerAdapter(files, this){
-            if (it == viewModel.fileUri.value!!.size) getImageFromLibrary()
-            else {
-                viewModel.fileUri.value!!.removeAt(it)
+            if (it == 0 && viewModel.fileUri.value!!.size < 3) getImageFromLibrary()
+            else if (it > 0) {
+                viewModel.fileUri.value!!.removeAt(it - 1)
                 adapter.removeItem(it, viewModel.fileUri.value!!)
-            }
+            } else if (it == 0) Toast.makeText(this, R.string.max_photo_message, Toast.LENGTH_SHORT).show()
         }
         create_image_recycler.adapter = adapter
     }
