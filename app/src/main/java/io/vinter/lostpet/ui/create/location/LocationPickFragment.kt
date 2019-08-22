@@ -83,7 +83,7 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
         val mapView = this.fragmentManager!!.findFragmentById(R.id.map) as SupportMapFragment
         val locationButton = mapView.view?.findViewById(2) as ImageView?
         locationButton?.setImageResource(R.drawable.ic_location_find)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) locationButton?.foreground = resources.getDrawable(R.drawable.ripple_transparent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) locationButton?.foreground = resources.getDrawable(R.drawable.ripple_transparent_secondary)
         locationButton?.setBackgroundResource(R.drawable.background_white_circle)
         locationButton?.elevation = 12f
 

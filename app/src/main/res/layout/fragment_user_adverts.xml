@@ -22,30 +22,6 @@
         app:lottie_fileName="infinity.json"
         app:lottie_loop="true" />
 
-    <ImageButton
-        android:id="@+id/user_adverts_back"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:background="@drawable/ripple_transparent"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:src="?attr/homeAsUpIndicator"
-        android:tint="@color/colorAccentDark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:gravity="center_vertical"
-        android:text="@string/my_adverts"
-        android:textColor="@color/colorAccentDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/user_adverts_back"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_adverts_recycler"
         android:layout_width="0dp"
@@ -55,7 +31,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_adverts_back" />
+        app:layout_constraintTop_toBottomOf="@+id/user_adverts_toolbar" />
 
     <io.vinter.lostpet.ui.view.ErrorView
         android:id="@+id/user_adverts_error"
@@ -66,4 +42,42 @@
         app:layout_constraintEnd_toEndOf="@+id/user_adverts_recycler"
         app:layout_constraintStart_toStartOf="@+id/user_adverts_recycler"
         app:layout_constraintTop_toTopOf="@+id/user_adverts_recycler" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/user_adverts_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorBackground"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/user_adverts_back"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/ripple_transparent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:src="?attr/homeAsUpIndicator"
+            android:tint="@color/colorAccentDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:text="@string/my_adverts"
+            android:textColor="@color/colorAccentDark"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/user_adverts_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
