@@ -32,8 +32,6 @@ import java.util.*
 
 class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
 
-    var location: LatLng? = null
-
     override fun onMapReady(map: GoogleMap?) {
        if (map != null) {
            getLocationPermission(map)
@@ -83,7 +81,7 @@ class LocationPickFragment : DialogFragment(), OnMapReadyCallback {
         val mapView = this.fragmentManager!!.findFragmentById(R.id.map) as SupportMapFragment
         val locationButton = mapView.view?.findViewById(2) as ImageView?
         locationButton?.setImageResource(R.drawable.ic_location_find)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) locationButton?.foreground = resources.getDrawable(R.drawable.ripple_transparent_secondary)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) locationButton?.foreground = resources.getDrawable(R.drawable.ripple_transparent_secondary, null)
         locationButton?.setBackgroundResource(R.drawable.background_white_circle)
         locationButton?.elevation = 12f
 

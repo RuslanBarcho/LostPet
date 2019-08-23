@@ -43,9 +43,6 @@ class EditActivity : AppCompatActivity() {
         edit_back.setOnClickListener {
             finish()
         }
-        edit_button_cancel.setOnClickListener {
-            finish()
-        }
 
         viewModel.message.observe(this, Observer {
             if (it != null){

@@ -1,112 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.edit.EditActivity">
 
-    <ImageButton
-        android:id="@+id/edit_back"
-        android:layout_width="56dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit_toolbar"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/ripple_transparent"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:src="?attr/homeAsUpIndicator"
-        android:tint="@color/colorAccentDark" />
+        android:background="@color/colorBackground"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/edit_button_delete"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/ripple_transparent"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:src="@drawable/ic_delete"
-        android:tint="@color/colorAccentDark" />
+        <ImageButton
+            android:id="@+id/edit_back"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/ripple_transparent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:src="?attr/homeAsUpIndicator"
+            android:tint="@color/colorAccentDark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_wrapHeight="147"
+            tools:layout_conversion_wrapWidth="147" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/edit_back"
-        android:gravity="center_vertical"
-        android:text="@string/edit"
-        android:textColor="@color/colorAccentDark"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/edit_button_delete"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/ripple_transparent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:src="@drawable/ic_delete"
+            android:tint="@color/colorAccentDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_wrapHeight="147"
+            tools:layout_conversion_wrapWidth="147" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:text="@string/edit"
+            android:textColor="@color/colorAccentDark"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/edit_back"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_wrapHeight="147"
+            tools:layout_conversion_wrapWidth="92" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/edit_back"
+        android:layout_height="54dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/background_container"
-        android:elevation="3dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/background_input"
         android:ems="10"
         android:hint="@string/title"
         android:inputType="textPersonName"
-        android:paddingBottom="10dp"
         android:paddingLeft="16dp"
-        android:paddingRight="8dp"
         android:paddingTop="10dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="10dp"
         android:textColor="@color/colorAccentDark"
-        android:textColorHint="@color/colorAccent"
-        android:translationZ="3dp" />
+        android:textColorHint="@color/darkGrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_toolbar"
+        tools:layout_conversion_wrapHeight="142"
+        tools:layout_conversion_wrapWidth="996" />
 
     <EditText
         android:id="@+id/edit_description"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/edit_title"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/background_container"
-        android:elevation="3dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/background_input"
         android:ems="10"
         android:gravity="top"
         android:hint="@string/description"
         android:inputType="textMultiLine"
-        android:paddingBottom="8dp"
         android:paddingLeft="16dp"
-        android:paddingRight="8dp"
         android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp"
         android:textColor="@color/colorAccentDark"
-        android:textColorHint="@color/colorAccent"
-        android:translationZ="3dp" />
-
-    <Button
-        android:id="@+id/edit_button_cancel"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="24dp"
-        android:background="@drawable/background_button_negative"
-        android:text="@string/cancel" />
+        android:textColorHint="@color/darkGrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_title"
+        tools:layout_conversion_wrapHeight="394"
+        tools:layout_conversion_wrapWidth="996" />
 
     <Button
         android:id="@+id/edit_button_done"
-        android:layout_width="150dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginBottom="16dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/background_button_positive"
-        android:text="@string/done" />
+        android:background="@drawable/background_button_negative"
+        android:text="@string/done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_conversion_wrapHeight="126"
+        tools:layout_conversion_wrapWidth="394" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
