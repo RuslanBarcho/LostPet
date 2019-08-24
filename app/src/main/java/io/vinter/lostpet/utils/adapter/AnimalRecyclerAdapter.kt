@@ -67,9 +67,7 @@ class AnimalRecyclerAdapter(private val adverts: ArrayList<Advert>, private val 
 
     fun addItems(adverts: ArrayList<Advert>){
         val beginIndex = this.adverts.size
-        showLoader = false
-        notifyItemRemoved(beginIndex)
-
+        removeLoader()
         this.adverts.addAll(adverts)
         this.notifyItemRangeInserted(beginIndex, this.adverts.size)
     }
@@ -79,7 +77,16 @@ class AnimalRecyclerAdapter(private val adverts: ArrayList<Advert>, private val 
     }
 
     fun addLoader(){
-        showLoader = true
-        this.notifyItemInserted(adverts.size)
+        if (!showLoader){
+            showLoader = true
+            this.notifyItemInserted(adverts.size)
+        }
+    }
+
+    fun removeLoader(){
+        if (showLoader){
+            showLoader = false
+            notifyItemRemoved(this.adverts.size)
+        }
     }
 }

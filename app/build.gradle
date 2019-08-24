@@ -9,8 +9,8 @@ android {
         applicationId "io.vinter.lostpet"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 3
-        versionName "0.2.1"
+        versionCode 4
+        versionName "0.2.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
